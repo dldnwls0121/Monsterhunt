@@ -1,7 +1,8 @@
 #include "MENU.h"
+#include "Color.h"
 void Menu::Init() 
 {
-	cout << "Menu" << endl;
+	DoubleBuffer::Get()->WriteBuffer(10, 10, "menu", 1);
 }
 
 void Menu::Update()

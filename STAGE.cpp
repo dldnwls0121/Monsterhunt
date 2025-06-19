@@ -1,7 +1,8 @@
 #include "STAGE.h"
+#include "Color.h"
 void Stage::Init()
 {
-	cout << "Stage" << endl;
+	DoubleBuffer::Get()->WriteBuffer(10, 10, "stage", 1);
 }
 
 void Stage::Update()

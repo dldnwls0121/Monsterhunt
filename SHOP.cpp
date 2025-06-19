@@ -1,7 +1,8 @@
 #include "SHOP.h"
+#include "Color.h"
 void Shop::Init()
 {
-	cout << "shop" << endl;
+	DoubleBuffer::Get()->WriteBuffer(10, 10, "shop", 1);
 }
 
 void Shop::Update()

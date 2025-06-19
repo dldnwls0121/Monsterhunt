@@ -12,9 +12,8 @@ class DoubleBuffer
 {
 private:
 	static DoubleBuffer* instance;
-	HANDLE hBuffer[2];	
-	int screenIndex;
 public:
+
 	static DoubleBuffer* Get()
 	{
 		if (instance == nullptr)
@@ -23,7 +22,10 @@ public:
 		}
 		return instance;
 	}
-
+private:
+	HANDLE hBuffer[2];
+	int screenIndex;
+public:
 	void InitBuffer();
 	void FlipBuffer();
 	void ClearBuffer();
