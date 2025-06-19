@@ -13,10 +13,102 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="헤더 파일\Doublebuffer">
+      <UniqueIdentifier>{aa55e477-5877-4598-b221-43b6c0f2a788}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Scenemanager">
+      <UniqueIdentifier>{ae744252-eac7-4528-8386-6f0618aa20c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Scenemanager\Scene">
+      <UniqueIdentifier>{3bf65cfb-aede-4e29-84f4-77f89e419236}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Scenemanager\Scene\Logo">
+      <UniqueIdentifier>{2897e52e-4383-492a-904d-12ca8826da76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Scenemanager\Scene\Menu">
+      <UniqueIdentifier>{21f2fe79-f442-4724-b30a-442e5bedfe17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Scenemanager\Scene\Shop">
+      <UniqueIdentifier>{45d385c5-8d4b-4f4a-9056-a2fd6ebdb03b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Scenemanager\Scene\Stage">
+      <UniqueIdentifier>{539d2777-9239-401c-86ef-2c0b2cbfc880}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Doublebuffer">
+      <UniqueIdentifier>{3bb7f766-13a2-4762-98bb-4c05f544dcaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Scenemanager">
+      <UniqueIdentifier>{79dec845-157e-4f18-b089-0b5663b9059a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Scenemanager\Scene">
+      <UniqueIdentifier>{5df493ab-1ddb-415b-be74-7e6691ef6fc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Scenemanager\Scene\Logo">
+      <UniqueIdentifier>{bf828522-d280-47f4-8f1f-a3753121b0d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Scenemanager\Scene\Menu">
+      <UniqueIdentifier>{1272a5d6-7fe5-4ddf-b2a8-9c705137ddf9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Scenemanager\Scene\Shop">
+      <UniqueIdentifier>{75e975c5-09d7-4f18-9e61-6ae54f5600c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Scenemanager\Scene\Stage">
+      <UniqueIdentifier>{ff1ccc3f-c65b-49f7-8961-3bb462059cd7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Monsterhunt.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="PLAYER.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DoubleBuffer.cpp">
+      <Filter>소스 파일\Doublebuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>소스 파일\Scenemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>소스 파일\Scenemanager\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="LOGO.cpp">
+      <Filter>소스 파일\Scenemanager\Scene\Logo</Filter>
+    </ClCompile>
+    <ClCompile Include="MENU.cpp">
+      <Filter>소스 파일\Scenemanager\Scene\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="SHOP.cpp">
+      <Filter>소스 파일\Scenemanager\Scene\Shop</Filter>
+    </ClCompile>
+    <ClCompile Include="STAGE.cpp">
+      <Filter>소스 파일\Scenemanager\Scene\Stage</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PLAYER.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="DoubleBuffer.h">
+      <Filter>헤더 파일\Doublebuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>헤더 파일\Scenemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>헤더 파일\Scenemanager\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="LOGO.h">
+      <Filter>헤더 파일\Scenemanager\Scene\Logo</Filter>
+    </ClInclude>
+    <ClInclude Include="MENU.h">
+      <Filter>헤더 파일\Scenemanager\Scene\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="SHOP.h">
+      <Filter>헤더 파일\Scenemanager\Scene\Shop</Filter>
+    </ClInclude>
+    <ClInclude Include="STAGE.h">
+      <Filter>헤더 파일\Scenemanager\Scene\Stage</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

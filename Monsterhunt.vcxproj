@@ -127,7 +127,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DoubleBuffer.cpp" />
+    <ClCompile Include="LOGO.cpp" />
+    <ClCompile Include="MENU.cpp" />
     <ClCompile Include="Monsterhunt.cpp" />
+    <ClCompile Include="PLAYER.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="SHOP.cpp" />
+    <ClCompile Include="STAGE.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DoubleBuffer.h" />
+    <ClInclude Include="LOGO.h" />
+    <ClInclude Include="MENU.h" />
+    <ClInclude Include="PLAYER.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="SHOP.h" />
+    <ClInclude Include="STAGE.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
