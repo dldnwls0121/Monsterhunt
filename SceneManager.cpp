@@ -40,4 +40,5 @@ void SceneManager::Init()
 void SceneManager::Update()
 {
 	currentscene->Update();
+
 }

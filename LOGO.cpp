@@ -1,9 +1,22 @@
 #include "LOGO.h"
 #include "DoubleBuffer.h"
 #include "Color.h"
+#include "PLAYER.h"
+#include "Enemy.h"
+
+
+PLAYER* Player = new PLAYER;
+Enemy enemy;
+
 void Logo::Init() 
 {
-	DoubleBuffer::Get()->WriteBuffer(10, 10, "logo", BLACK);
+	
+	Player->init();
+	Player->Playermove(enemy);
+	Player->playerhurt(enemy);
+	Player->Renderplayer();
+	enemy.init();
+	enemy.Enemyprt();
 }
 
 void Logo::Update()
@@ -13,5 +26,5 @@ void Logo::Update()
 	{
 		SceneManager::Get()->Setscene(MENU);
 	}
-
+	
 }

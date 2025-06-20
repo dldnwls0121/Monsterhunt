@@ -1,22 +1,22 @@
 ﻿#include "SceneManager.h"
 #include "DoubleBuffer.h"
-
+#include "PLAYER.h"
 int main()
 {
 	//버퍼 출력
 	
 	DoubleBuffer::Get()->InitBuffer();
 	SceneManager::Get()->Setscene(LOGO);
-	
+
 	while (true)
 	{
-		system("cls");
+		
 		SceneManager::Get()->Init();
-		SceneManager::Get()->Update();
+		//SceneManager::Get()->Update();
 		DoubleBuffer::Get()->FlipBuffer();
 		DoubleBuffer::Get()->ClearBuffer();
 
-		Sleep(100);
+		Sleep(30);
 	}
 
 	DoubleBuffer::Get()->CloseBuffer();

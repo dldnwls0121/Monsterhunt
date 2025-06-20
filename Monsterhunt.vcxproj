@@ -128,7 +128,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DoubleBuffer.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="LOGO.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="MENU.cpp" />
     <ClCompile Include="Monsterhunt.cpp" />
     <ClCompile Include="PLAYER.cpp" />
@@ -140,7 +142,9 @@
   <ItemGroup>
     <ClInclude Include="Color.h" />
     <ClInclude Include="DoubleBuffer.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="LOGO.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="MENU.h" />
     <ClInclude Include="PLAYER.h" />
     <ClInclude Include="Scene.h" />
