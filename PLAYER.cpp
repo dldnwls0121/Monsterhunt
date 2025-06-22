@@ -67,19 +67,28 @@ void PLAYER::Playermove(Enemy& enemy)
 		
 				dir = LSPACE;
 				enemy.enemyhp -= atk;
-				if (enemy.enemyhp == 0)
+				if (enemy.enemyhp == true)
 				{
-					enemy.enemyact = false;
+					if (enemy.enemyhp == 0)
+					{
+						enemy.enemyact = false;
+					}
 				}
+		
 			
 			}
 			else if (dir == RIGHT)
 			{
 				dir = RSPACE;
 				enemy.enemyhp -= atk;
+				if (enemy.enemyhp == true)
+				{
+					if (enemy.enemyhp == 0)
+					{
+						enemy.enemyact = false;
+					}
+				}
 			}
-			
-		
 		}
 		else
 		{
@@ -118,12 +127,23 @@ void PLAYER::Renderplayer()
 {
 	char player_hp[10];
 	_itoa_s(hp, player_hp, 10);
+	char player_atk[10];
+	_itoa_s(atk, player_atk, 10);
+	char player_def[10];
+	_itoa_s(def, player_def, 10);
+
 	map->Mapinit();
+
 	for (int i = 0; i < 4; i++)
 	{
 		DoubleBuffer::Get()->WriteBuffer(x, y + i, shape[dir][i], WHITE);
 	}
+
 	DoubleBuffer::Get()->WriteBuffer(0, 0, "체력 : ",WHITE);
-	DoubleBuffer::Get()->WriteBuffer(4, 0, player_hp, RED);
+	DoubleBuffer::Get()->WriteBuffer(3, 0, player_hp, RED);
+	DoubleBuffer::Get()->WriteBuffer(0, 2, "공격력 : ", WHITE);
+	DoubleBuffer::Get()->WriteBuffer(5, 2, player_atk, WHITE);
+	DoubleBuffer::Get()->WriteBuffer(0, 4, "방어력 : ", WHITE);
+	DoubleBuffer::Get()->WriteBuffer(5, 4, player_def, WHITE);
 
 }

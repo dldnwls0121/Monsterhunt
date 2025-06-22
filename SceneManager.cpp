@@ -42,3 +42,8 @@ void SceneManager::Update()
 	currentscene->Update();
 
 }
+
+void SceneManager::Render()
+{
+	currentscene->Render();
+}

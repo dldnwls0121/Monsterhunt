@@ -16,7 +16,7 @@ void Enemy::Enemymove(int x)
 
 	Speed++;
 
-	if (Speed % 2 == 1)
+	if (Speed % 3 == 0)
 	{
 
 		if (x > enemyx)
@@ -34,7 +34,8 @@ void Enemy::Enemymove(int x)
 
 void Enemy::Enemyprt()
 {
-
+	char emyhp[10];
+	_itoa_s(enemyhp, emyhp, 10);
 	if (enemyact == true)
 	{
 		for (int i = 0; i < 4; i++)
@@ -43,4 +44,6 @@ void Enemy::Enemyprt()
 		}
 	}
 
+	DoubleBuffer::Get()->WriteBuffer(32, 0,"Àû Ã¼·Â : ", WHITE);
+	DoubleBuffer::Get()->WriteBuffer(37, 0, emyhp, RED);
 }

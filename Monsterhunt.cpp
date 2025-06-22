@@ -10,13 +10,14 @@ int main()
 
 	while (true)
 	{
-		
+		// 다른 클래스 render 정의하기
 		SceneManager::Get()->Init();
+		SceneManager::Get()->Render();
 		//SceneManager::Get()->Update();
 		DoubleBuffer::Get()->FlipBuffer();
 		DoubleBuffer::Get()->ClearBuffer();
 
-		Sleep(30);
+		Sleep(10);
 	}
 
 	DoubleBuffer::Get()->CloseBuffer();

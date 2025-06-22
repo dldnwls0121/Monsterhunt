@@ -20,7 +20,7 @@ class PLAYER
 private:
 	int hp = 50;
 	int atk = 10;
-	int def;
+	int def = 5;
 	Dir dir = LEFT;
 	string shape[5][4];
 public:
