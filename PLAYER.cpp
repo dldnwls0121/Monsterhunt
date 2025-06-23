@@ -76,8 +76,6 @@ void PLAYER::Playermove(Enemy& enemy)
 						}
 					}
 				}
-
-		
 			
 			}
 			else if (dir == RIGHT)
@@ -90,9 +88,9 @@ void PLAYER::Playermove(Enemy& enemy)
 					cout << atk << "피해를 입혔습니다" << endl;
 					if (enemy.enemyact == true)
 					{
-						
 						if (enemy.enemyhp == 0)
 						{
+							playermoney += 100;
 							enemy.enemyact = false;
 							//DoubleBuffer::Get()->WriteBuffer(5, 30, "피해를 입혔습니다", WHITE);
 						}
@@ -157,7 +155,7 @@ void PLAYER::Renderplayer()
 	DoubleBuffer::Get()->WriteBuffer(4, 2, player_atk, WHITE);
 	DoubleBuffer::Get()->WriteBuffer(0, 4, "방어력 : ", WHITE);
 	DoubleBuffer::Get()->WriteBuffer(4, 4, player_def, WHITE);
-	DoubleBuffer::Get()->WriteBuffer(4, 6, "소지금 : ", WHITE);
-	DoubleBuffer::Get()->WriteBuffer(4, 6, player_Gold, WHITE);
+	DoubleBuffer::Get()->WriteBuffer(0, 6, "소지금 : ", WHITE);
+	DoubleBuffer::Get()->WriteBuffer(4, 6, player_Gold, YELLOW);
 
 }

@@ -3,7 +3,7 @@
 #include "PLAYER.h"
 #include "Enemy.h"
 
-
+PLAYER* Player = new PLAYER;
 Enemy enemy;
 
 void Stage::Init()

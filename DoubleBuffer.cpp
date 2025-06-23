@@ -57,6 +57,7 @@ void DoubleBuffer::ClearBuffer()
 	FillConsoleOutputCharacter(hBuffer[screenIndex], ' ', BufferWidth * BufferHeight, pos, &dw);
 }
 
+
 void DoubleBuffer::WriteBuffer(int x, int y, string shape, int color)
 {
 	//pos.x = x * 2; pos.y = y;
