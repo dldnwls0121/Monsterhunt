@@ -5,20 +5,29 @@
 #include "Enemy.h"
 
 
-PLAYER* Player = new PLAYER;
-Enemy enemy;
+
 
 void Logo::Init() 
 {
 	playershape[0][0] = "          ";
 	playershape[0][1] = " ○    ";
-	playershape[0][2] = "(ㅣoㅡㅡ  ";
+	playershape[0][2] = "(ㅣo---  ";
 	playershape[0][3] = " ㅅ      ";
 
-	playershape[1][0] = "          ";
-	playershape[1][1] = " ○    ";
-	playershape[1][2] = "(ㅣ oㅡ>>  ";
-	playershape[1][3] = " ㅅ      ";
+	playershape[1][0] = "             ";
+	playershape[1][1] = "    ○    ";
+	playershape[1][2] = "   (ㅣ o---  ";
+	playershape[1][3] = "    ㅅ      ";
+
+	playershape[2][0] = "                 ";
+	playershape[2][1] = "        ○    ";
+	playershape[2][2] = "       (ㅣ o-->  ";
+	playershape[2][3] = "        ㅅ      ";
+
+	playershape[3][0] = "                     ";
+	playershape[3][1] = "            ○    ";
+	playershape[3][2] = "           (ㅣ o-->>  ";
+	playershape[3][3] = "            ㅅ      ";
 
 
 	enemyshape[0][0] = "      ■■■  ■■  ■■■";
@@ -67,15 +76,9 @@ void Logo::Init()
 	enemyshape[4][7] = "      ■■■■■■■■■■";
 
 
-	//Player->init();
-	//Player->Playermove(enemy);
-	//Player->playerhurt(enemy);
-	//Player->Renderplayer();
-	//enemy.init();
-	//enemy.Enemyprt();
 }
 
-void Logo::Update()
+void Logo::Progress()
 {
 	
 	if (GetAsyncKeyState(VK_RETURN))
@@ -93,32 +96,49 @@ void Logo::Render()
 {
 	playerani++;//속도 조절용
 
-	if (playerani >= 4)
+	if (playerani >= 10)
 	{
 		planiindex++;//다음 장면 전환용
-		if (planiindex >= 2)
+		if (planiindex >= 4)
 		{
 			planiindex = 0;
 		}
 		playerani = 0;
 	}
 
+	for (int i = 0; i < 4; i++)
+	{
+		DoubleBuffer::Get()->WriteBuffer(playerx, playery+i, playershape[planiindex][i], WHITE);
+	}
+
+
+	enemyani++;
+
+	if (enemyani >= 10)
+	{
+		enaniindex++;
+		if (enaniindex >=5)
+		{
+			enaniindex = 0;
+
+		}
+		enemyani = 0;
+	}
+	
 	for (int i = 0; i < 8; i++)
 	{
-		DoubleBuffer::Get()->WriteBuffer(playerx, playery, playershape[planiindex][i], WHITE);
+		DoubleBuffer::Get()->WriteBuffer(enemyx, enemyy + i, enemyshape[enaniindex][i], RED);
 	}
+
+
+	DoubleBuffer::Get()->WriteBuffer(12, 23, "==============================", WHITE);
+	DoubleBuffer::Get()->WriteBuffer(17, 25, "PRESS ENTER", WHITE);
+
 }
 
 
-void Logo::Logoanimation()
-{
-
-	
-}
 
 
 
-void Logo::RenderLogo()
-{
-	
-}
+
+

@@ -4,7 +4,10 @@
 class Stage : public Scene
 {
 public:
+	PLAYER* Player = new PLAYER;
+
 	 void Init() override;
-	 void Update() override;
+	 void Progress() override;
+	 void Render() override;
 };	 
 

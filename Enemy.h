@@ -1,6 +1,6 @@
 #pragma once
 #include "DoubleBuffer.h"
-
+#define Enemycount 8
 
 class Enemy
 {
@@ -14,6 +14,6 @@ public:
 	int enemyhp = 10;
 	void init();
 	void Enemymove(int x);
-	void Enemyprt();
+	void RenderEnemy();
 };
 

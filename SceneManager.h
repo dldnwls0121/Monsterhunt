@@ -34,7 +34,7 @@ public:
 public:
 	void Setscene(const SCENE_ID& id);
 	void Init();
-	void Update();
+	void Progress();
 	void Render();
 };
 

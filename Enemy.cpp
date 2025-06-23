@@ -32,17 +32,21 @@ void Enemy::Enemymove(int x)
 }
 
 
-void Enemy::Enemyprt()
+void Enemy::RenderEnemy()
 {
 	char emyhp[10];
 	_itoa_s(enemyhp, emyhp, 10);
-	if (enemyact == true)
+	for (int i = 0; i < Enemycount; i++)
 	{
-		for (int i = 0; i < 4; i++)
+		if (enemyact == true)
 		{
-			DoubleBuffer::Get()->WriteBuffer(enemyx, enemyy + i, shape[i], BLUE);
+			for (int i = 0; i < 4; i++)
+			{
+				DoubleBuffer::Get()->WriteBuffer(enemyx, enemyy + i, shape[i], BLUE);
+			}
 		}
 	}
+
 
 	DoubleBuffer::Get()->WriteBuffer(32, 0,"Àû Ã¼·Â : ", WHITE);
 	DoubleBuffer::Get()->WriteBuffer(37, 0, emyhp, RED);

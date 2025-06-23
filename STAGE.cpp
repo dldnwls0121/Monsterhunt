@@ -1,11 +1,26 @@
 #include "STAGE.h"
 #include "Color.h"
+#include "PLAYER.h"
+#include "Enemy.h"
+
+
+Enemy enemy;
+
 void Stage::Init()
 {
-	DoubleBuffer::Get()->WriteBuffer(10, 10, "stage", 1);
+	Player->init();
+	enemy.init();
+	
 }
 
-void Stage::Update()
+void Stage::Progress()
 {
-	cout << "  " << endl;
+	Player->Playermove(enemy);
+	Player->playerhurt(enemy);
+}
+
+void Stage::Render()
+{
+	Player->Renderplayer();
+	enemy.RenderEnemy();
 }

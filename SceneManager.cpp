@@ -37,9 +37,9 @@ void SceneManager::Init()
 	currentscene->Init();
 }
 
-void SceneManager::Update()
+void SceneManager::Progress()
 {
-	currentscene->Update();
+	currentscene->Progress();
 
 }
 

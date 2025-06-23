@@ -26,7 +26,7 @@ private:
 public:
 	int x = 25;
 	int y = 28;
-	//PLAYER(int hp, int atk, int def) : hp(hp), atk(atk), def(def) {}
+	int playermoney = 500;
 	Map* map = new Map;
 	void init();
 	void Playermove(Enemy & enemy);

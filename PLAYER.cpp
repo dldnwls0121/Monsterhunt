@@ -2,32 +2,29 @@
 #include "Color.h"
 #include <conio.h>
 #include <Windows.h>
-
+#include "Utility.h"
 
 void PLAYER::init()
 {
 
-
-
-
 	shape[0][0] = "          ";
-	shape[0][1] = "     ○   ";
-	shape[0][2] = "ㅡㅡoㅣ)   ";
-	shape[0][3] = "     ㅅ      ";
+	shape[0][1] = "    ○   ";
+	shape[0][2] = "---oㅣ)   ";
+	shape[0][3] = "    ㅅ      ";
 
 	shape[1][0] = "          ";
 	shape[1][1] = " ○    ";
-	shape[1][2] = "(ㅣoㅡㅡ  ";
+	shape[1][2] = "(ㅣo---  ";
 	shape[1][3] = " ㅅ      ";
 
 	shape[2][0] = "          ";
-	shape[2][1] = "      ○   ";
-	shape[2][2] = "<<ㅡo ㅣ)   ";
-	shape[2][3] = "      ㅅ      ";
+	shape[2][1] = "     ○   ";
+	shape[2][2] = "<<--oㅣ)   ";
+	shape[2][3] = "     ㅅ      ";
 
 	shape[3][0] = "          ";
 	shape[3][1] = " ○    ";
-	shape[3][2] = "(ㅣ oㅡ>>  ";
+	shape[3][2] = "(ㅣ -->>  ";
 	shape[3][3] = " ㅅ      ";
 
 	shape[4][0] = "        ";
@@ -64,30 +61,44 @@ void PLAYER::Playermove(Enemy& enemy)
 		{
 			if (dir == LEFT)
 			{
-		
 				dir = LSPACE;
-				enemy.enemyhp -= atk;
-				if (enemy.enemyhp == true)
+				if (enemy.enemyx <= x  && x-4 <= enemy.enemyx  )
 				{
-					if (enemy.enemyhp == 0)
+					enemy.enemyhp -= atk;
+					//Utilty::setpos(20, 20);
+					//cout << atk << "피해를 입혔습니다" << endl;
+					if (enemy.enemyact == true)
 					{
-						enemy.enemyact = false;
+						if (enemy.enemyhp == 0)
+						{
+							enemy.enemyact = false;
+							
+						}
 					}
 				}
+
 		
 			
 			}
 			else if (dir == RIGHT)
 			{
 				dir = RSPACE;
-				enemy.enemyhp -= atk;
-				if (enemy.enemyhp == true)
+				if (enemy.enemyx >= x && x + 4 >= enemy.enemyx )
 				{
-					if (enemy.enemyhp == 0)
+					enemy.enemyhp -= atk;
+					Utilty::setpos(20, 20);
+					cout << atk << "피해를 입혔습니다" << endl;
+					if (enemy.enemyact == true)
 					{
-						enemy.enemyact = false;
+						
+						if (enemy.enemyhp == 0)
+						{
+							enemy.enemyact = false;
+							//DoubleBuffer::Get()->WriteBuffer(5, 30, "피해를 입혔습니다", WHITE);
+						}
 					}
 				}
+		
 			}
 		}
 		else
@@ -131,7 +142,8 @@ void PLAYER::Renderplayer()
 	_itoa_s(atk, player_atk, 10);
 	char player_def[10];
 	_itoa_s(def, player_def, 10);
-
+	char player_Gold[10];
+	_itoa_s(playermoney, player_Gold, 10);
 	map->Mapinit();
 
 	for (int i = 0; i < 4; i++)
@@ -140,10 +152,12 @@ void PLAYER::Renderplayer()
 	}
 
 	DoubleBuffer::Get()->WriteBuffer(0, 0, "체력 : ",WHITE);
-	DoubleBuffer::Get()->WriteBuffer(3, 0, player_hp, RED);
+	DoubleBuffer::Get()->WriteBuffer(4, 0, player_hp, RED);
 	DoubleBuffer::Get()->WriteBuffer(0, 2, "공격력 : ", WHITE);
-	DoubleBuffer::Get()->WriteBuffer(5, 2, player_atk, WHITE);
+	DoubleBuffer::Get()->WriteBuffer(4, 2, player_atk, WHITE);
 	DoubleBuffer::Get()->WriteBuffer(0, 4, "방어력 : ", WHITE);
-	DoubleBuffer::Get()->WriteBuffer(5, 4, player_def, WHITE);
+	DoubleBuffer::Get()->WriteBuffer(4, 4, player_def, WHITE);
+	DoubleBuffer::Get()->WriteBuffer(4, 6, "소지금 : ", WHITE);
+	DoubleBuffer::Get()->WriteBuffer(4, 6, player_Gold, WHITE);
 
 }
