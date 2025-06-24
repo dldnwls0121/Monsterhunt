@@ -11,7 +11,7 @@ int main()
 	
 	while (true)
 	{
-
+	
 		if (_kbhit)
 		{
 			SceneManager::Get()->Init();

@@ -18,19 +18,20 @@ enum Dir
 class PLAYER
 {
 private:
-	int hp = 50;
+	
 	int atk = 10;
 	int def = 5;
-	Dir dir = LEFT;
 	string shape[5][4];
 public:
+
+	int hp = 50;
+	Dir dir = LEFT;
 	int x = 25;
 	int y = 28;
 	int playermoney = 500;
 	Map* map = new Map;
 	void init();
 	void Playermove(Enemy & enemy);
-	void playerhurt(Enemy& enemy);
 	void Renderplayer();
 };
 

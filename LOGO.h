@@ -17,6 +17,6 @@ public:
 	 virtual void Init() override;
 	 virtual void Progress() override;
 	 void Render() override;
-	 void Release();
+	 ~Logo() override {};
 };
 

@@ -9,5 +9,6 @@ public:
 	 void Init() override;
 	 void Progress() override;
 	 void Render() override;
+	 ~Stage() override {}
 };	 
 

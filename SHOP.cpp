@@ -24,24 +24,35 @@ void Shop::Progress()
 {
 	if (GetAsyncKeyState(VK_UP))
 	{
-		arrowy -= 5;
-		if (arrowy <= 20)
+		
+		if (arrowy == 20)
 		{
-			arrowy = 20;
+
 		}
+		else
+		{
+			if (arrowy > 20)
+			{
+
+				arrowy -= 5;
+				Prev_arrowy += 5;
+			}
+		}
+
 
 	}
 	if (GetAsyncKeyState(VK_DOWN))
 	{
-		arrowy += 5;
-		if (arrowy >= 35)
+		
+		if (arrowy < 35)
 		{
-			arrowy = 35;
+			arrowy += 5;
+			Prev_arrowy -= 5;
 		}
 	}
 
 	
-	if (GetAsyncKeyState(VK_RETURN))
+	if (GetAsyncKeyState(VK_RETURN) & 0x8000)
 	{
 
 		if (arrowy == 20)
@@ -74,13 +85,17 @@ void Shop::Render()
 	{
 		DoubleBuffer::Get()->WriteBuffer(x, y+i, shape[i], WHITE);
 	}
-	DoubleBuffer::Get()->WriteBuffer(arrowx,arrowy ,arrow, WHITE);
-
+	DoubleBuffer::Get()->WriteBuffer(arrowx, arrowy , arrow, WHITE);
+	DoubleBuffer::Get()->WriteBuffer(arrowx, Prev_arrowy, Prev_arrow, WHITE);
 	DoubleBuffer::Get()->WriteBuffer(16, 20, "체력 포션", WHITE);
 	DoubleBuffer::Get()->WriteBuffer(16, 25, "공격력 포션", WHITE);
 	DoubleBuffer::Get()->WriteBuffer(16, 30, "방어력 포션", WHITE);
 	DoubleBuffer::Get()->WriteBuffer(16, 35, "메뉴 화면으로", WHITE);
 	DoubleBuffer::Get()->WriteBuffer(0, 0, "소지금 : ", WHITE);
 	DoubleBuffer::Get()->WriteBuffer(4, 0, player_gold, YELLOW);
+}
+
+Shop::~Shop()
+{
 }
  

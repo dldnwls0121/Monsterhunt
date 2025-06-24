@@ -69,7 +69,7 @@ void PLAYER::Playermove(Enemy& enemy)
 					//cout << atk << "피해를 입혔습니다" << endl;
 					if (enemy.enemyact == true)
 					{
-						if (enemy.enemyhp == 0)
+						if (enemy.enemyhp <= 0)
 						{
 							enemy.enemyact = false;
 							
@@ -88,7 +88,7 @@ void PLAYER::Playermove(Enemy& enemy)
 					cout << atk << "피해를 입혔습니다" << endl;
 					if (enemy.enemyact == true)
 					{
-						if (enemy.enemyhp == 0)
+						if (enemy.enemyhp <= 0)
 						{
 							playermoney += 100;
 							enemy.enemyact = false;
@@ -115,22 +115,6 @@ void PLAYER::Playermove(Enemy& enemy)
 	
 }
 
-void PLAYER::playerhurt(Enemy& enemy)
-{
-	if (enemy.enemyact == true)
-	{
-		if (x == enemy.enemyx)
-		{
-			hp -= enemy.enemydmg;
-			if (hp == 0)
-			{
-				enemy.enemyact = false;
-				dir = DIE;
-			}
-		}
-	}
-
-}
 
 void PLAYER::Renderplayer()
 {

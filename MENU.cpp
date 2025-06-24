@@ -15,21 +15,23 @@ void Menu::Progress()
 {
 	if (GetAsyncKeyState(VK_UP))
 	{
-		arrowy -= 5;
-		if (arrowy <= 25)
+		if (arrowy > 25 )
 		{
-			arrowy = 25;
+			arrowy -= 5;
+			Prev_arrowy += 5;
 		}
+
 	}
 	if (GetAsyncKeyState(VK_DOWN))
 	{
-		arrowy += 5;
-		if (arrowy >= 30)
+		if (arrowy < 30  )
 		{
-			arrowy = 30;
+			arrowy += 5;
+			Prev_arrowy -= 5;
 		}
+	
 	}
-	if (GetAsyncKeyState(VK_RETURN))
+	if (GetAsyncKeyState(VK_RETURN) && 0x8000)
 	{
 		if (arrowy == 25)
 		{
@@ -51,6 +53,15 @@ void Menu::Render()
 	}
 
 	DoubleBuffer::Get()->WriteBuffer(arrowx, arrowy, arrow, WHITE);
+	DoubleBuffer::Get()->WriteBuffer(arrowx, Prev_arrowy, Prev_arrow, WHITE);
 	DoubleBuffer::Get()->WriteBuffer(18, 25, "GAMEPLAY", WHITE);
 	DoubleBuffer::Get()->WriteBuffer(18, 30, "SHOP", WHITE);
+
+
+
+}
+
+Menu::~Menu()
+{
+	DoubleBuffer::Get()->ClearBuffer();
 }
