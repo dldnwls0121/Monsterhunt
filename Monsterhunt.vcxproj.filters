@@ -55,6 +55,18 @@
     <Filter Include="소스 파일\Scenemanager\Scene\Stage">
       <UniqueIdentifier>{ff1ccc3f-c65b-49f7-8961-3bb462059cd7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Scenemanager\Scene\Stage2">
+      <UniqueIdentifier>{58d9baa2-1d66-427c-b177-461fc0d18581}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Scenemanager\Scene\Boss">
+      <UniqueIdentifier>{f49421c3-9e47-4bef-b9b8-c4d391ce4146}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Scenemanager\Scene\Stage2">
+      <UniqueIdentifier>{11b84b8f-b50e-47a3-87c2-57a16a9c8dfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Scenemanager\Scene\Boss">
+      <UniqueIdentifier>{db45b27c-9968-4900-924f-43f43dad4f43}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Monsterhunt.cpp">
@@ -92,6 +104,12 @@
     </ClCompile>
     <ClCompile Include="Datamanager.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage2.cpp">
+      <Filter>소스 파일\Scenemanager\Scene\Stage2</Filter>
+    </ClCompile>
+    <ClCompile Include="Bossstage.cpp">
+      <Filter>소스 파일\Scenemanager\Scene\Boss</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +151,12 @@
     </ClInclude>
     <ClInclude Include="Datamanager.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage2.h">
+      <Filter>헤더 파일\Scenemanager\Scene\Stage2</Filter>
+    </ClInclude>
+    <ClInclude Include="Bossstage.h">
+      <Filter>헤더 파일\Scenemanager\Scene\Boss</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

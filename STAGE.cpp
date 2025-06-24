@@ -15,7 +15,7 @@ void Stage::Init()
 
 void Stage::Progress()
 {
-	if (Player != nullptr && enemy != nullptr)
+	if (Player != nullptr && enemy != nullptr)//이거 해제 수정
 	{
 		Player->Playermove(*enemy);
 

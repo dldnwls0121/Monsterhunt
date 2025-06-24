@@ -12,6 +12,8 @@ enum SCENE_ID
 	MENU,
 	SHOP,
 	STAGE,
+	STAGE2,
+	BOSS,
 
 };
 

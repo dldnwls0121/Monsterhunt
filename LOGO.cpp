@@ -78,6 +78,7 @@ void Logo::Init()
 
 }
 
+//int currentSpaceState2 = GetAsyncKeyState(VK_RETURN) & 0x8000;
 void Logo::Progress()
 {
 	
