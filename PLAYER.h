@@ -23,10 +23,11 @@ private:
 	int def = 5;
 	bool fall = false;
 	string shape[5][4];
+	int h;
+	float t;
 	const float G = 9.81f;
 	const float Vo = 11.f;
 public:
-
 	int hp = 50;
 	Dir dir = LEFT;
 	int x = 25;

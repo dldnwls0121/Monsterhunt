@@ -16,5 +16,6 @@ public:
 	void init();
 	void Enemymove(int x);
 	void RenderEnemy();
+	void EnemyHurt();
 };
 

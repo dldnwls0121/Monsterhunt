@@ -111,6 +111,25 @@ void PLAYER::Playermove(Enemy& enemy)
 			}
 		}
 		
+		//if (GetAsyncKeyState(VK_UP) && fall)
+		//{
+		//	fall = true;
+		//	t = 0.f;
+		//	h = y;
+		//}
+		//if (fall)
+		//{
+		//	t += 0.3f;		//20 초기 플레이어 위치값
+		//	y = (int)(h - (Vo * t) + (0.5f * G * t * t));
+		//
+		//
+		//	//20 초기 플레이어 위치값
+		//	if (y >= h)
+		//	{
+		//		y = h;
+		//		fall = false;
+		//	}
+		//}
 		enemy.Enemymove(x);
 	
 }

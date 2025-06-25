@@ -27,12 +27,9 @@ void Shop::Progress()
 {
 	if (GetAsyncKeyState(VK_UP))
 	{
-		
-
 	
 			if (arrowy > 20)
 			{
-
 				arrowy -= 5;
 				Prev_arrowy += 5;
 			}
@@ -76,6 +73,68 @@ void Shop::Progress()
 		
 	}
 }
+#pragma region shop
+//void Shop::Progress()
+//{
+//	// 방향키 처리
+//	if (GetAsyncKeyState(VK_UP) & 0x8000)
+//	{
+//		if (arrowy > 20)
+//		{
+//			arrowy -= 5;
+//			Prev_arrowy += 5;
+//		}
+//	}
+//	if (GetAsyncKeyState(VK_DOWN) & 0x8000)
+//	{
+//		if (arrowy < 35)
+//		{
+//			arrowy += 5;
+//			Prev_arrowy -= 5;
+//		}
+//	}
+//
+//	// 아이템 판매 처리
+//	if (GetAsyncKeyState(VK_RETURN) & 0x8000)
+//	{
+//		PLAYER* player = DataManager::Get()->currentplayer;
+//
+//		if (!player) return; // 혹시 없을 경우 방어 코드
+//
+//		switch (arrowy)
+//		{
+//		case 20: // 체력 포션
+//			if (player->playermoney >= Hppotion)
+//			{
+//				player->playermoney -= Hppotion;
+//				player->hp += 20; // 예시: 체력 20 회복
+//				DoubleBuffer::Get()->WriteBuffer(20, 2, "체력 포션 구매!", WHITE);
+//			}
+//			break;
+//		case 25: // 공격력 포션
+//			if (player->playermoney >= Atkpotion)
+//			{
+//				player->playermoney -= Atkpotion;
+//				player->atk += 5;
+//				DoubleBuffer::Get()->WriteBuffer(20, 5, "공격력 증가!", WHITE);
+//			}
+//			break;
+//		case 30: // 방어력 포션
+//			if (player->playermoney >= Defpotion)
+//			{
+//				player->playermoney -= Defpotion;
+//				player->def += 5;
+//				DoubleBuffer::Get()->WriteBuffer(20, 5, "방어력 증가!", WHITE);
+//			}
+//			break;
+//		case 35: // 메뉴 화면
+//			SceneManager::Get()->Setscene(MENU);
+//			break;
+//		}
+//	}
+//}
+
+#pragma endregion
 
 void Shop::Render()
 {

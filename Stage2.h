@@ -5,7 +5,7 @@
 class Stage2 :public Scene
 {
 private:
-	int hp;
+	int hp = 20;
 	int x = 29;
 	int y = 25;
 	string shape[3];
