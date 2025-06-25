@@ -1,7 +1,7 @@
 #pragma once
 #include "Scene.h"
 #include "SceneManager.h"
-#include "PLAYER.h"
+#include "Datamanager.h"
 #include "STAGE.h"
 
 class Shop : public Scene
@@ -18,10 +18,11 @@ private:
 	string shape[12];
 	string arrow = "->";
 	string Prev_arrow = "  ";
-	PLAYER player;
+
 public:
-	 virtual void Init() override;
-	 virtual void Progress() override;
+
+	 void Init() override;
+	 void Progress() override;
 	 void Render() override;
 	 virtual ~Shop() override;
 };

@@ -3,7 +3,7 @@
 #include "SceneManager.h"
 class Menu : public Scene
 {
-	int logoMenux = 0;
+	int logoMenux = 1;
 	int logoMenuy = 10;
 	int arrowx = 13;
 	int arrowy = 25;

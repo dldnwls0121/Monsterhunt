@@ -14,6 +14,7 @@ void SceneManager::Setscene(const SCENE_ID& id)
 		delete currentscene;
 		currentscene = nullptr;
 	}
+
 	switch (id)
 	{
 	case LOGO:
@@ -37,6 +38,8 @@ void SceneManager::Setscene(const SCENE_ID& id)
 	default:
 		break;
 	}
+
+	
 }
 
 void SceneManager::Init()

@@ -9,20 +9,16 @@ int main()
 	DoubleBuffer::Get()->InitBuffer();
 	SceneManager::Get()->Setscene(LOGO);
 	
-	while (true)
-	{
-	
-		if (_kbhit)
-		{
-			SceneManager::Get()->Init();
-			SceneManager::Get()->Render();
-			SceneManager::Get()->Progress();
-			DoubleBuffer::Get()->FlipBuffer();
-			DoubleBuffer::Get()->ClearBuffer();
-	
-		}
 
-		Sleep(50);
+	while (true)
+	{	
+		SceneManager::Get()->Init();
+		SceneManager::Get()->Progress();
+		SceneManager::Get()->Render();
+		DoubleBuffer::Get()->FlipBuffer();
+		DoubleBuffer::Get()->ClearBuffer();
+		
+		 Sleep(50);
 	}
 
 	DoubleBuffer::Get()->CloseBuffer();

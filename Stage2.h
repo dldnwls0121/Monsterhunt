@@ -1,6 +1,7 @@
 #pragma once
 #include "Scene.h"
 #include "SceneManager.h"
+#include "PLAYER.h"
 class Stage2 :public Scene
 {
 private:

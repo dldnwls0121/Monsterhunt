@@ -5,6 +5,8 @@
 
 void Shop::Init()
 {
+
+
 	shape[0] = "             ■        ■";
 	shape[1] = "           ■■■    ■■■";
 	shape[2] = "           ■■■■■■■■";
@@ -17,6 +19,7 @@ void Shop::Init()
 	shape[9] = "               ■■■■";
 	shape[10] = "             ■       ■";
 	shape[11] = "■■■■■■■■■■■■■■■■■■■■";
+
 }
 
 
@@ -25,19 +28,15 @@ void Shop::Progress()
 	if (GetAsyncKeyState(VK_UP))
 	{
 		
-		if (arrowy == 20)
-		{
 
-		}
-		else
-		{
+	
 			if (arrowy > 20)
 			{
 
 				arrowy -= 5;
 				Prev_arrowy += 5;
 			}
-		}
+		
 
 
 	}
@@ -54,10 +53,11 @@ void Shop::Progress()
 	
 	if (GetAsyncKeyState(VK_RETURN) & 0x8000)
 	{
-
+		
+		PLAYER * player = DataManager::Get()->currentplayer;
 		if (arrowy == 20)
 		{
-			player.playermoney -= Hppotion;
+			player->playermoney -= Hppotion;
 			DoubleBuffer::Get()->WriteBuffer(20, 2, "고맙다냥", WHITE);
 		}
 		else if (arrowy == 25)
@@ -79,8 +79,13 @@ void Shop::Progress()
 
 void Shop::Render()
 {
+	DataManager::Get()->SetPlayer();
+
 	char player_gold[10];
-	_itoa_s(player.playermoney, player_gold, 10);
+	int playermoney = DataManager::Get()->currentplayer->playermoney;
+
+	_itoa_s(playermoney, player_gold, 10);
+
 	for (int i = 0; i < 12; i++)
 	{
 		DoubleBuffer::Get()->WriteBuffer(x, y+i, shape[i], WHITE);
@@ -94,6 +99,8 @@ void Shop::Render()
 	DoubleBuffer::Get()->WriteBuffer(0, 0, "소지금 : ", WHITE);
 	DoubleBuffer::Get()->WriteBuffer(4, 0, player_gold, YELLOW);
 }
+
+
 
 Shop::~Shop()
 {
