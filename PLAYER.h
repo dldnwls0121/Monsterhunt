@@ -21,7 +21,10 @@ private:
 	
 	int atk = 10;
 	int def = 5;
+	bool fall = false;
 	string shape[5][4];
+	const float G = 9.81f;
+	const float Vo = 11.f;
 public:
 
 	int hp = 50;
