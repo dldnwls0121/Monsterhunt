@@ -2,7 +2,7 @@
 #include "Color.h"
 #include <Windows.h>
 #include "Datamanager.h"
-
+#include "SceneManager.h"
 void PLAYER::init()
 {
 
@@ -34,9 +34,11 @@ void PLAYER::init()
 
 }
 
-void PLAYER::Playermove(std::vector<Enemy>& enemies)
+void PLAYER::Playermove()
 {
+	Enemy& enemies = *DataManager::Get()->currentenemy;
 	
+
 		if (GetAsyncKeyState(VK_LEFT))
 		{
 			dir = LEFT;
@@ -81,53 +83,74 @@ void PLAYER::Playermove(std::vector<Enemy>& enemies)
 	
 		if (GetAsyncKeyState(VK_SPACE))
 		{
-			for (auto& enemy : enemies)
-			{
-				if (enemy.enemyact == false)
-				{
-					continue;
-				}
-				if (dir == LEFT)
-				{
-					dir = LSPACE;
-					if (enemy.enemyx <= x && x - 4 <= enemy.enemyx)
+			
+			// 적 인원 추가 하고 투명 적 수정
+			
+					if (dir == LEFT)
 					{
-						enemy.enemyhp -= atk;
-						//Utilty::setpos(20, 20);
-						//cout << atk << "피해를 입혔습니다" << endl;
-						if (enemy.enemyact == true)
+						dir = LSPACE;
+						if (enemies.enemyx <= x && x - 4 <= enemies.enemyx)
 						{
-							if (enemy.enemyhp <= 0)
-							{
-								playermoney += 100;
-								enemy.enemyact = false;
+							enemies.enemyhp -= atk;
 
+							if (enemies.enemyhp <= 0)
+							{
+								for (int i = 0; i < Enemycount; i++)
+								{
+									enemies.enemyact = false;
+									playermoney += 100;
+									//if (!enemies.enemyact)
+									//{
+									//	enemies.Respawn();
+									//	
+									//	if (enemies.countenemy == Enemycount)
+									//	{
+									//		enemies.enemyact = false;
+									//		break;
+									//	}
+									//}
+								}
 							}
+
+
 						}
 
 					}
-
-				}
-				else if (dir == RIGHT)
-				{
-					dir = RSPACE;
-					if (enemy.enemyx >= x && x + 4 >= enemy.enemyx)
+					else if (dir == RIGHT)
 					{
-						enemy.enemyhp -= atk;
-
-						if (enemy.enemyact == true)
+						dir = RSPACE;
+						if (enemies.enemyx >= x && x + 4 >= enemies.enemyx)
 						{
-							if (enemy.enemyhp <= 0)
-							{
-								playermoney += 100;
-								enemy.enemyact = false;
+							enemies.enemyhp -= atk;
 
+							for (int i = 0; i < Enemycount; i++)
+							{
+								if (enemies.enemyhp <= 0)
+								{
+
+									enemies.enemyact = false;
+									playermoney += 100;
+
+									//if (!enemies.enemyact)
+									//{
+									//	enemies.Respawn();
+									//	
+									//	if (enemies.countenemy == Enemycount)
+									//	{
+									//		enemies.enemyact = false;
+									//		break;
+									//	}
+									//}
+
+								}
 							}
 
 						}
-					}
 
-				}
+					
+				
+
+				
 			}
 		}
 			else
@@ -141,15 +164,28 @@ void PLAYER::Playermove(std::vector<Enemy>& enemies)
 					dir = LEFT;
 				}
 			}
-		std::vector<Enemy>& enemies = DataManager::Get()->currentenemise;
-			
+
 		
-		for (Enemy& enemy : enemies)
-		{
-			enemy.Enemymove(x, y);
-		}
+		enemies.Enemymove(x, y);
+
 }
 
+void PLAYER::PlayerDamage(Enemy& enemies)
+{
+
+		// x 좌표가 충돌 범위 내에 있는지 체크 (예: +-4)
+		if (x == enemies.enemyx)
+		{
+			hp -= enemies.enemydmg;
+			if (hp <= 0)
+			{
+				dir = DIE;
+				enemies.enemyact = false;
+			
+			}
+		}
+	
+}
 
 void PLAYER::Renderplayer()
 {
@@ -161,8 +197,9 @@ void PLAYER::Renderplayer()
 	_itoa_s(def, player_def, 10);
 	char player_Gold[10];
 	_itoa_s(playermoney, player_Gold, 10);
-	map->Mapinit();
 
+
+	map->Mapinit();
 	for (int i = 0; i < 4; i++)
 	{
 		DoubleBuffer::Get()->WriteBuffer(x, y + i, shape[dir][i], WHITE);
@@ -177,23 +214,17 @@ void PLAYER::Renderplayer()
 	DoubleBuffer::Get()->WriteBuffer(0, 6, "소지금 : ", WHITE);
 	DoubleBuffer::Get()->WriteBuffer(4, 6, player_Gold, YELLOW);
 	DoubleBuffer::Get()->WriteBuffer(20, 0, " /8 처치 수", YELLOW);
-}
 
-void PLAYER::PlayerDamage(const std::vector<Enemy>& enemies)
-{
-	for (const auto& enemy : enemies)
+	if (DataManager::Get()->killCount == Enemycount)
 	{
-		if (!enemy.enemyact) continue;
-
-		// x 좌표가 충돌 범위 내에 있는지 체크 (예: +-4)
-		if (x >= enemy.enemyx - 4 && x <= enemy.enemyx + 4)
+		DoubleBuffer::Get()->WriteBuffer(10, 10, "모든 몬스터를 처치했습니다! ", YELLOW);
+		DoubleBuffer::Get()->WriteBuffer(10, 11, "다음 스테이지로 갈려면 Enter을 눌러주세요!", YELLOW);
+		if (GetAsyncKeyState(VK_RETURN))
 		{
-			hp -= enemy.enemydmg;
-			if (hp <= 0)
-			{
-				dir = DIE;
-				break; 
-			}
+			SceneManager::Get()->Setscene(STAGE2);
 		}
 	}
+
+	
 }
+

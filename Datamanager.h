@@ -1,15 +1,17 @@
 #pragma once
 #include "PLAYER.h"
 #include "Enemy.h"
-
+#include "Color.h"
+#include "SceneManager.h"
 class DataManager
 {
 private:
 	static DataManager* instance;
-	
+
 public:
 	PLAYER* currentplayer = nullptr;
-	std::vector<Enemy> currentenemise;
+	Enemy* currentenemy = nullptr;
+	int killCount = 0;
 	static DataManager* Get()
 	{
 		if (instance == nullptr)
@@ -30,18 +32,14 @@ public:
 
 	void SetEnemy()
 	{
-		currentenemise.clear();
 
-		for (int i = 0; i < Enemycount; i++)
+		if (currentenemy == nullptr)
 		{
-		
-			Enemy enemies;
-			enemies.init();
-
-			currentenemise.push_back(enemies);
-
+			currentenemy = new Enemy;
 		}
+
 	}
+
 
 	void ReleasePlayer()
 	{

@@ -1,23 +1,11 @@
 #include "Enemy.h"
 #include "Color.h"
-Enemy::Enemy()
-{
-	enemyx = 0;
-	enemyy = 28;
-	enemydmg = 5;
-	enemyact = true;
-	enemyhp = 10;
-}
+#include "Datamanager.h"
 
 
 void Enemy::init()
 {
-	enemyx = (rand() % 2 == 0) ? 0 : 40;
-	enemyy = 28;
-	enemydmg = 5;
-	enemyact = true;
-	Allenemydie = false;
-	enemyhp = 10;
+
 
 	shape[0] = " 天天天";
 	shape[1] = "太 ∞ 太";
@@ -25,7 +13,7 @@ void Enemy::init()
 	shape[3] = " 天天天";
 }
 
-int Speed = 0;
+
 void Enemy::Enemymove(int x,int y)
 {
 
@@ -55,10 +43,10 @@ void Enemy::Enemymove(int x,int y)
 }
 
 
+
 void Enemy::RenderEnemy()
 {
 	char emyhp[10];
-
 	_itoa_s(enemyhp, emyhp, 10);
 
 	
@@ -73,4 +61,16 @@ void Enemy::RenderEnemy()
 	
 	DoubleBuffer::Get()->WriteBuffer(32, 0,"瞳 羹溘 : ", WHITE);
 	DoubleBuffer::Get()->WriteBuffer(37, 0, emyhp, RED);
+	char Enemy_count[10];
+	_itoa_s(DataManager::Get()->killCount , Enemy_count, 10);
+	DoubleBuffer::Get()->WriteBuffer(15, 0, Enemy_count, YELLOW);
+}
+
+void Enemy::Respawn()
+{
+	enemyx = (rand() % 2 == 0) ? 0 : 40;
+	enemyy = 28;
+	enemyhp = 10;
+	enemyact = true;
+	DataManager::Get()->killCount++;
 }

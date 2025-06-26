@@ -39,8 +39,8 @@ public:
 	int playermoney = 500;
 	Map* map = new Map;
 	void init();
-	void Playermove(std::vector<Enemy> & enemies);
+	void Playermove();
 	void Renderplayer();
-	void PlayerDamage(const std::vector<Enemy>& enemies);
+	void PlayerDamage(Enemy& enemies);
 };
 
