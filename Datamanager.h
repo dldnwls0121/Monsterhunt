@@ -9,7 +9,7 @@ private:
 	
 public:
 	PLAYER* currentplayer = nullptr;
-	Enemy* currentenemy = nullptr;
+	std::vector<Enemy> currentenemise;
 	static DataManager* Get()
 	{
 		if (instance == nullptr)
@@ -30,7 +30,17 @@ public:
 
 	void SetEnemy()
 	{
-		currentenemy = new Enemy;
+		currentenemise.clear();
+
+		for (int i = 0; i < Enemycount; i++)
+		{
+		
+			Enemy enemies;
+			enemies.init();
+
+			currentenemise.push_back(enemies);
+
+		}
 	}
 
 	void ReleasePlayer()

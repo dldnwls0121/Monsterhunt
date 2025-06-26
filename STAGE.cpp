@@ -2,41 +2,31 @@
 #include "Color.h"
 #include "Datamanager.h"
 
-Enemy* enemy = new Enemy;
+
 
 
 void Stage::Init()
 {
-	
 	DataManager::Get()->currentplayer->init();
-	enemy->init();
+
 }
 
 
 
 void Stage::Progress()
-{
- 
-	//if (enemy->enemyact == true)
-	//{
-	//	if (Player->x == enemy->enemyx)
-	//	{
-	//		Player->hp -= enemy->enemydmg;
-	//		if (Player->hp <= 0) // 플레이어가 죽을 시 게임 종료, 객체들 다 해제
-	//		{
-	//			enemy->enemyact = false;
-	//			Player->dir = DIE;
-	//
-	//		}
-	//	}
-	//}
-	
+{	
+	DataManager::Get()->currentplayer->Playermove(DataManager::Get()->currentenemise);
+	DataManager::Get()->currentplayer->PlayerDamage(DataManager::Get()->currentenemise);
 }
 
 
 void Stage::Render()
 {
-
+	
 	DataManager::Get()->currentplayer->Renderplayer();
-	enemy->RenderEnemy();
+	for (Enemy& enemy : DataManager::Get()->currentenemise)
+	{
+		if (enemy.enemyact)  // 살아있는 적만
+			enemy.RenderEnemy();
+	}
 }

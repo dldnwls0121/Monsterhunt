@@ -3,9 +3,7 @@
 #include "Color.h"
 #include "PLAYER.h"
 #include "Enemy.h"
-
-
-
+#include "Datamanager.h"
 
 void Logo::Init() 
 {
@@ -75,7 +73,7 @@ void Logo::Init()
 	enemyshape[4][6] = "      ¡á¡á¡á ¡á  ¡á ¡á¡á¡á";
 	enemyshape[4][7] = "      ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á";
 
-
+	DataManager::Get()->SetPlayer();
 }
 
 //int currentSpaceState2 = GetAsyncKeyState(VK_RETURN) & 0x8000;

@@ -1,8 +1,7 @@
 #include "PLAYER.h"
 #include "Color.h"
-#include <conio.h>
 #include <Windows.h>
-#include "Utility.h"
+#include "Datamanager.h"
 
 void PLAYER::init()
 {
@@ -31,9 +30,11 @@ void PLAYER::init()
 	shape[4][1] = "        ";
 	shape[4][2] = "        ";
 	shape[4][3] = "○+ㅡ<   ";
+
+
 }
 
-void PLAYER::Playermove(Enemy& enemy)
+void PLAYER::Playermove(std::vector<Enemy>& enemies)
 {
 	
 		if (GetAsyncKeyState(VK_LEFT))
@@ -57,81 +58,96 @@ void PLAYER::Playermove(Enemy& enemy)
 			
 		
 		}
+
+		if (GetAsyncKeyState(VK_UP) && !fall)
+		{
+			fall = true;
+			t = 0.f;
+			h = y;
+		}
+		if (fall)
+		{
+			t += 0.3f;		//20 초기 플레이어 위치값
+			y = (int)(h - (Vo * t) + (0.5f * G * t * t));
+
+
+			//20 초기 플레이어 위치값
+			if (y >= h)
+			{
+				y = h;
+				fall = false;
+			}
+		}
+	
 		if (GetAsyncKeyState(VK_SPACE))
 		{
-			if (dir == LEFT)
+			for (auto& enemy : enemies)
 			{
-				dir = LSPACE;
-				if (enemy.enemyx <= x  && x-4 <= enemy.enemyx  )
+				if (enemy.enemyact == false)
 				{
-					enemy.enemyhp -= atk;
-					//Utilty::setpos(20, 20);
-					//cout << atk << "피해를 입혔습니다" << endl;
-					if (enemy.enemyact == true)
+					continue;
+				}
+				if (dir == LEFT)
+				{
+					dir = LSPACE;
+					if (enemy.enemyx <= x && x - 4 <= enemy.enemyx)
 					{
-						if (enemy.enemyhp <= 0)
+						enemy.enemyhp -= atk;
+						//Utilty::setpos(20, 20);
+						//cout << atk << "피해를 입혔습니다" << endl;
+						if (enemy.enemyact == true)
 						{
-							enemy.enemyact = false;
-							
+							if (enemy.enemyhp <= 0)
+							{
+								playermoney += 100;
+								enemy.enemyact = false;
+
+							}
+						}
+
+					}
+
+				}
+				else if (dir == RIGHT)
+				{
+					dir = RSPACE;
+					if (enemy.enemyx >= x && x + 4 >= enemy.enemyx)
+					{
+						enemy.enemyhp -= atk;
+
+						if (enemy.enemyact == true)
+						{
+							if (enemy.enemyhp <= 0)
+							{
+								playermoney += 100;
+								enemy.enemyact = false;
+
+							}
+
 						}
 					}
+
 				}
+			}
+		}
+			else
+			{
+				if (dir == RSPACE)
+				{
+					dir = RIGHT;
+				}
+				if (dir == LSPACE)
+				{
+					dir = LEFT;
+				}
+			}
+		std::vector<Enemy>& enemies = DataManager::Get()->currentenemise;
 			
-			}
-			else if (dir == RIGHT)
-			{
-				dir = RSPACE;
-				if (enemy.enemyx >= x && x + 4 >= enemy.enemyx )
-				{
-					enemy.enemyhp -= atk;
-					Utilty::setpos(20, 20);
-					cout << atk << "피해를 입혔습니다" << endl;
-					if (enemy.enemyact == true)
-					{
-						if (enemy.enemyhp <= 0)
-						{
-							playermoney += 100;
-							enemy.enemyact = false;
-							//DoubleBuffer::Get()->WriteBuffer(5, 30, "피해를 입혔습니다", WHITE);
-						}
-					}
-				}
 		
-			}
-		}
-		else
+		for (Enemy& enemy : enemies)
 		{
-			if (dir == RSPACE)
-			{
-				dir = RIGHT;
-			}
-			if (dir == LSPACE)
-			{
-				dir = LEFT;
-			}
+			enemy.Enemymove(x, y);
 		}
-		
-		//if (GetAsyncKeyState(VK_UP) && fall)
-		//{
-		//	fall = true;
-		//	t = 0.f;
-		//	h = y;
-		//}
-		//if (fall)
-		//{
-		//	t += 0.3f;		//20 초기 플레이어 위치값
-		//	y = (int)(h - (Vo * t) + (0.5f * G * t * t));
-		//
-		//
-		//	//20 초기 플레이어 위치값
-		//	if (y >= h)
-		//	{
-		//		y = h;
-		//		fall = false;
-		//	}
-		//}
-		enemy.Enemymove(x);
-	
 }
 
 
@@ -160,5 +176,24 @@ void PLAYER::Renderplayer()
 	DoubleBuffer::Get()->WriteBuffer(4, 4, player_def, WHITE);
 	DoubleBuffer::Get()->WriteBuffer(0, 6, "소지금 : ", WHITE);
 	DoubleBuffer::Get()->WriteBuffer(4, 6, player_Gold, YELLOW);
+	DoubleBuffer::Get()->WriteBuffer(20, 0, " /8 처치 수", YELLOW);
+}
 
+void PLAYER::PlayerDamage(const std::vector<Enemy>& enemies)
+{
+	for (const auto& enemy : enemies)
+	{
+		if (!enemy.enemyact) continue;
+
+		// x 좌표가 충돌 범위 내에 있는지 체크 (예: +-4)
+		if (x >= enemy.enemyx - 4 && x <= enemy.enemyx + 4)
+		{
+			hp -= enemy.enemydmg;
+			if (hp <= 0)
+			{
+				dir = DIE;
+				break; 
+			}
+		}
+	}
 }

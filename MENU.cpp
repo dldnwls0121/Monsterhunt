@@ -1,5 +1,6 @@
 #include "MENU.h"
 #include "Color.h"
+#include "Datamanager.h"
 void Menu::Init() 
 {
 	logoMenushape[0] = "#  #                   #                     #  #               #   ";
@@ -35,6 +36,7 @@ void Menu::Progress()
 	{
 		if (arrowy == 25)
 		{
+			DataManager::Get()->SetEnemy();
 			SceneManager::Get()->Setscene(STAGE);
 		}
 		if (arrowy == 30)

@@ -5,8 +5,6 @@
 
 void Shop::Init()
 {
-
-
 	shape[0] = "             ¡á        ¡á";
 	shape[1] = "           ¡á¡á¡á    ¡á¡á¡á";
 	shape[2] = "           ¡á¡á¡á¡á¡á¡á¡á¡á";
@@ -51,18 +49,22 @@ void Shop::Progress()
 	if (GetAsyncKeyState(VK_RETURN) & 0x8000)
 	{
 		
-		PLAYER * player = DataManager::Get()->currentplayer;
+		
 		if (arrowy == 20)
 		{
-			player->playermoney -= Hppotion;
+			DataManager::Get()->currentplayer->playermoney -= Hppotion;
 			DoubleBuffer::Get()->WriteBuffer(20, 2, "°í¸¿´Ù³É", WHITE);
 		}
 		else if (arrowy == 25)
 		{
+			DataManager::Get()->currentplayer->playermoney -= Strpotion;
+			DataManager::Get()->currentplayer->atk += 5;
 			DoubleBuffer::Get()->WriteBuffer(20, 5, "°í¸¿´Ù³É", WHITE);
 		}
 		else if (arrowy == 30)
 		{
+			DataManager::Get()->currentplayer->playermoney -= Defpotion;
+			DataManager::Get()->currentplayer->def += 3;
 			DoubleBuffer::Get()->WriteBuffer(20, 5, "°í¸¿´Ù³É", WHITE);
 		}
 		else if (arrowy == 35)
@@ -138,7 +140,6 @@ void Shop::Progress()
 
 void Shop::Render()
 {
-	DataManager::Get()->SetPlayer();
 
 	char player_gold[10];
 	int playermoney = DataManager::Get()->currentplayer->playermoney;
