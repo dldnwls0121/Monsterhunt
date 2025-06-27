@@ -13,7 +13,7 @@ void Enemy::init()
 	shape[3] = " ¤Ñ¤Ñ¤Ñ";
 }
 
-int Speed = 0;
+
 
 void Enemy::Enemymove(int x,int y)
 {

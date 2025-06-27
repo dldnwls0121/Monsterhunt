@@ -1,5 +1,6 @@
 #include "Stage2.h"
 #include "Datamanager.h"
+#include "BattleManager.h"
 void Stage2::Init()
 {
 	DataManager::Get()->currentplayer->init();
@@ -9,7 +10,7 @@ void Stage2::Init()
 void Stage2::Progress()
 {
 	DataManager::Get()->currentplayer->Playermove();
-	//DataManager::Get()->currentplayer->PlayerDamage();
+	BattleManager::Get()->Playerstage2();
 	DataManager::Get()->currentenemy2->Enemymove2(DataManager::Get()->currentplayer->x, DataManager::Get()->currentplayer->y);
 }
 

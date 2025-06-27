@@ -31,7 +31,7 @@ public:
 	{
 		if (currentplayer == nullptr)
 		{
-		\
+		
 			currentplayer = new PLAYER;
 		}
 	}

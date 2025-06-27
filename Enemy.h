@@ -7,7 +7,7 @@ class Enemy
 {
 private:
 	string shape[4];
-
+	int Speed = 0;
 public:
 	int enemyx = 40;
 	int enemyy = 28;

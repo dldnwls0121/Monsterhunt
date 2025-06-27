@@ -57,7 +57,6 @@ void PLAYER::Playermove()
 			{
 				x--;
 			}
-			
 		
 		}
 
@@ -85,15 +84,6 @@ void PLAYER::Playermove()
 
 }
 
-
-
-void PLAYER::PlayerDamage()
-{
-	Enemy& enemies = *DataManager::Get()->currentenemy;
-		// x 좌표가 충돌 범위 내에 있는지 체크 (예: +-4)
-
-	
-}
 
 void PLAYER::Renderplayer()
 {
@@ -123,8 +113,9 @@ void PLAYER::Renderplayer()
 	DoubleBuffer::Get()->WriteBuffer(4, 4, player_def, WHITE);
 	DoubleBuffer::Get()->WriteBuffer(0, 6, "소지금 : ", WHITE);
 	DoubleBuffer::Get()->WriteBuffer(4, 6, player_Gold, YELLOW);
-	DoubleBuffer::Get()->WriteBuffer(20, 0, " /8 처치 수", YELLOW);
 	DoubleBuffer::Get()->WriteBuffer(18, 0, Enemy_count, YELLOW);
+	DoubleBuffer::Get()->WriteBuffer(20, 0, " /8 처치 수", YELLOW);
+	
 	if (hp == 0)
 	{
 		DoubleBuffer::Get()->WriteBuffer(10, 10, "플레이어가 사망하였습니다", YELLOW);
@@ -151,21 +142,7 @@ void PLAYER::Renderplayer()
 
 
 	}
-	if (DataManager::Get()->killCount == Enemycount)
-	{
-		DoubleBuffer::Get()->WriteBuffer(10, 10, "모든 몬스터를 처치했습니다! ", YELLOW);
-		DoubleBuffer::Get()->WriteBuffer(10, 11, "다음 스테이지로 갈려면 Enter을 눌러주세요!", YELLOW);
 
-		if (GetAsyncKeyState(VK_RETURN))
-		{
-			DataManager::Get()->ReleaseEnemy();
-
-			DataManager::Get()->SetEnemy2();
-			SceneManager::Get()->Setscene(STAGE2);
-			
-			
-		}
-	}
 
 
 	
