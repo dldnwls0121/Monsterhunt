@@ -76,6 +76,9 @@
     <Filter Include="소스 파일\Gamemanager">
       <UniqueIdentifier>{b670b90e-5c90-426d-9403-4dab1d9056e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\Gamemanager">
+      <UniqueIdentifier>{cfcd7ca5-d7f4-44e4-987a-e316b334d36a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Monsterhunt.cpp">
@@ -161,9 +164,6 @@
     <ClInclude Include="Map.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Datamanager.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Stage2.h">
       <Filter>헤더 파일\Scenemanager\Scene\Stage2</Filter>
     </ClInclude>
@@ -179,8 +179,11 @@
     <ClInclude Include="Boss.h">
       <Filter>헤더 파일\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="Datamanager.h">
+      <Filter>헤더 파일\Gamemanager</Filter>
+    </ClInclude>
     <ClInclude Include="BattleManager.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>헤더 파일\Gamemanager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -92,6 +92,25 @@ void BattleManager::Playerstage1()
 	}
 }
 
+void BattleManager::Nextstage2()
+{
+	if (DataManager::Get()->killCount == Enemycount)
+	{
+		DoubleBuffer::Get()->WriteBuffer(10, 10, "모든 몬스터를 처치했습니다! ", YELLOW);
+		DoubleBuffer::Get()->WriteBuffer(10, 11, "다음 스테이지로 갈려면 Enter을 눌러주세요!", YELLOW);
+
+		if (GetAsyncKeyState(VK_RETURN))
+		{
+			DataManager::Get()->ReleaseEnemy();
+			DataManager::Get()->killCount = 0;
+			DataManager::Get()->SetEnemy2();
+			SceneManager::Get()->Setscene(STAGE2);
+
+
+		}
+	}
+}
+
 void BattleManager::Playerstage2()
 {
 
@@ -182,6 +201,10 @@ void BattleManager::Playerstage2()
 		}
 	}
 
+}
+
+void BattleManager::NextBoss()
+{
 }
 
 void BattleManager::PlayerBoss()

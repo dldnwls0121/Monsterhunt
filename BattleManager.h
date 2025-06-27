@@ -21,7 +21,9 @@ public:
 	}
 
 	void Playerstage1();
+	void Nextstage2();
 	void Playerstage2();
+	void NextBoss();
 	void PlayerBoss();
 };
 
