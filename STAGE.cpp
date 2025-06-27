@@ -17,7 +17,6 @@ void Stage::Progress()
 {	
 
 	DataManager::Get()->currentplayer->Playermove();
-	DataManager::Get()->currentplayer->PlayerDamage();
 	BattleManager::Get()->Playerstage1();
 	DataManager::Get()->currentenemy->Enemymove(DataManager::Get()->currentplayer->x, DataManager::Get()->currentplayer->y);
 }
