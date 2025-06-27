@@ -81,109 +81,17 @@ void PLAYER::Playermove()
 			}
 		}
 	
-		if (GetAsyncKeyState(VK_SPACE))
-		{
-			
-			// 적 인원 추가 하고 투명 적 수정
-			
-					if (dir == LEFT)
-					{
-						dir = LSPACE;
-						if (enemies.enemyx <= x && x - 4 <= enemies.enemyx)
-						{
-							enemies.enemyhp -= atk;
-
-							if (enemies.enemyhp <= 0)
-							{
-								for (int i = 0; i < Enemycount; i++)
-								{
-									enemies.enemyact = false;
-									playermoney += 100;
-									//if (!enemies.enemyact)
-									//{
-									//	enemies.Respawn();
-									//	
-									//	if (enemies.countenemy == Enemycount)
-									//	{
-									//		enemies.enemyact = false;
-									//		break;
-									//	}
-									//}
-								}
-							}
-
-
-						}
-
-					}
-					else if (dir == RIGHT)
-					{
-						dir = RSPACE;
-						if (enemies.enemyx >= x && x + 4 >= enemies.enemyx)
-						{
-							enemies.enemyhp -= atk;
-
-							for (int i = 0; i < Enemycount; i++)
-							{
-								if (enemies.enemyhp <= 0)
-								{
-
-									enemies.enemyact = false;
-									playermoney += 100;
-
-									//if (!enemies.enemyact)
-									//{
-									//	enemies.Respawn();
-									//	
-									//	if (enemies.countenemy == Enemycount)
-									//	{
-									//		enemies.enemyact = false;
-									//		break;
-									//	}
-									//}
-
-								}
-							}
-
-						}
-
-					
-				
-
-				
-			}
-		}
-			else
-			{
-				if (dir == RSPACE)
-				{
-					dir = RIGHT;
-				}
-				if (dir == LSPACE)
-				{
-					dir = LEFT;
-				}
-			}
-
 		
-		enemies.Enemymove(x, y);
 
 }
 
-void PLAYER::PlayerDamage(Enemy& enemies)
-{
 
+
+void PLAYER::PlayerDamage()
+{
+	Enemy& enemies = *DataManager::Get()->currentenemy;
 		// x 좌표가 충돌 범위 내에 있는지 체크 (예: +-4)
-		if (x == enemies.enemyx)
-		{
-			hp -= enemies.enemydmg;
-			if (hp <= 0)
-			{
-				dir = DIE;
-				enemies.enemyact = false;
-			
-			}
-		}
+
 	
 }
 
@@ -197,9 +105,11 @@ void PLAYER::Renderplayer()
 	_itoa_s(def, player_def, 10);
 	char player_Gold[10];
 	_itoa_s(playermoney, player_Gold, 10);
-
+	char Enemy_count[10];
+	_itoa_s(DataManager::Get()->killCount, Enemy_count, 10);
 
 	map->Mapinit();
+
 	for (int i = 0; i < 4; i++)
 	{
 		DoubleBuffer::Get()->WriteBuffer(x, y + i, shape[dir][i], WHITE);
@@ -214,17 +124,52 @@ void PLAYER::Renderplayer()
 	DoubleBuffer::Get()->WriteBuffer(0, 6, "소지금 : ", WHITE);
 	DoubleBuffer::Get()->WriteBuffer(4, 6, player_Gold, YELLOW);
 	DoubleBuffer::Get()->WriteBuffer(20, 0, " /8 처치 수", YELLOW);
+	DoubleBuffer::Get()->WriteBuffer(18, 0, Enemy_count, YELLOW);
+	if (hp == 0)
+	{
+		DoubleBuffer::Get()->WriteBuffer(10, 10, "플레이어가 사망하였습니다", YELLOW);
+		DoubleBuffer::Get()->WriteBuffer(10, 10, "메뉴로 돌아가실려면 Enter를 눌러주세요", YELLOW);
+		if (GetAsyncKeyState(VK_RETURN))
+		{
+			SceneManager::Get()->Setscene(MENU);
+			DataManager::Get()->currentplayer->hp = 50;
+			DataManager::Get()->currentplayer->dir = LEFT;
+			DataManager::Get()->currentplayer->atk = 10;
+			DataManager::Get()->currentplayer->def = 5;
+			DataManager::Get()->currentplayer->playermoney = 500;
 
+			if (DataManager::Get()->currentenemy != nullptr)
+			{
+
+				DataManager::Get()->currentenemy->enemyhp = 20;
+				DataManager::Get()->currentenemy->enemyx = 40;
+				DataManager::Get()->currentenemy->enemyy = 28;
+				DataManager::Get()->currentenemy->enemydmg = 5;
+				DataManager::Get()->currentenemy->enemyact = true;
+			}
+		}
+
+
+	}
 	if (DataManager::Get()->killCount == Enemycount)
 	{
 		DoubleBuffer::Get()->WriteBuffer(10, 10, "모든 몬스터를 처치했습니다! ", YELLOW);
 		DoubleBuffer::Get()->WriteBuffer(10, 11, "다음 스테이지로 갈려면 Enter을 눌러주세요!", YELLOW);
+
 		if (GetAsyncKeyState(VK_RETURN))
 		{
+			DataManager::Get()->ReleaseEnemy();
+
+			DataManager::Get()->SetEnemy2();
 			SceneManager::Get()->Setscene(STAGE2);
+			
+			
 		}
 	}
 
+
 	
 }
+
+
 

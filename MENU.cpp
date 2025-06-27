@@ -9,7 +9,7 @@ void Menu::Init()
 	logoMenushape[3] = "#  #  #  #  #  # ##    #    # ##  #  #       #  #  #  #  #  #   #    # ##  #  #";
 	logoMenushape[4] = "#  #  #  #  #  #   ##  #    ##    #          #  #  #  #  #  #   #    ##    #";
 	logoMenushape[5] = "#  #   ##   #  # ###    ##   ##   #          #  #   ###  #  #    ##   ##   #";
-
+	
 }
 
 void Menu::Progress()

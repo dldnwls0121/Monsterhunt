@@ -13,6 +13,7 @@ void Enemy::init()
 	shape[3] = " ㅡㅡㅡ";
 }
 
+int Speed = 0;
 
 void Enemy::Enemymove(int x,int y)
 {
@@ -38,7 +39,7 @@ void Enemy::Enemymove(int x,int y)
 		{
 			enemyy--;
 		}
-
+		
 	}
 }
 
@@ -46,10 +47,12 @@ void Enemy::Enemymove(int x,int y)
 
 void Enemy::RenderEnemy()
 {
-	char emyhp[10];
-	_itoa_s(enemyhp, emyhp, 10);
+	if (DataManager::Get()->currentenemy != nullptr)
+	{
+		char emyhp[10];
+		_itoa_s(enemyhp, emyhp, 10);
 
-	
+
 		if (enemyact == true)
 		{
 			for (int i = 0; i < 4; i++)
@@ -57,13 +60,13 @@ void Enemy::RenderEnemy()
 				DoubleBuffer::Get()->WriteBuffer(enemyx, enemyy + i, shape[i], BLUE);
 			}
 		}
-	
-	
-	DoubleBuffer::Get()->WriteBuffer(32, 0,"적 체력 : ", WHITE);
-	DoubleBuffer::Get()->WriteBuffer(37, 0, emyhp, RED);
-	char Enemy_count[10];
-	_itoa_s(DataManager::Get()->killCount , Enemy_count, 10);
-	DoubleBuffer::Get()->WriteBuffer(15, 0, Enemy_count, YELLOW);
+
+
+		DoubleBuffer::Get()->WriteBuffer(32, 0, "적 체력 : ", WHITE);
+		DoubleBuffer::Get()->WriteBuffer(37, 0, emyhp, RED);
+	}
+
+
 }
 
 void Enemy::Respawn()
@@ -72,5 +75,4 @@ void Enemy::Respawn()
 	enemyy = 28;
 	enemyhp = 10;
 	enemyact = true;
-	DataManager::Get()->killCount++;
 }

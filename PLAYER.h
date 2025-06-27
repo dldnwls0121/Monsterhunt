@@ -22,7 +22,7 @@ private:
 	
 	bool fall = false;
 	string shape[5][4];
-#pragma region 점프 구현 변수
+#pragma region 점프 구현 
 	int h;
 	float t;
 	const float G = 9.81f;
@@ -41,6 +41,6 @@ public:
 	void init();
 	void Playermove();
 	void Renderplayer();
-	void PlayerDamage(Enemy& enemies);
+	void PlayerDamage();
 };
 

@@ -73,7 +73,7 @@ void Logo::Init()
 	enemyshape[4][6] = "      ¡á¡á¡á ¡á  ¡á ¡á¡á¡á";
 	enemyshape[4][7] = "      ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á";
 
-	DataManager::Get()->SetPlayer();
+
 }
 
 //int currentSpaceState2 = GetAsyncKeyState(VK_RETURN) & 0x8000;
@@ -82,6 +82,7 @@ void Logo::Progress()
 	
 	if (GetAsyncKeyState(VK_RETURN) & 0x8000)
 	{
+		DataManager::Get()->SetPlayer();
 		SceneManager::Get()->Setscene(MENU);
 	}
 	
