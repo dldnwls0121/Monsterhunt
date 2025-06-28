@@ -5,6 +5,9 @@
 #include "Boss.h"
 #include "Datamanager.h"
 
+#define Enemycount 8
+#define Enemy2count 5
+
 class BattleManager
 {
 private:
@@ -25,5 +28,9 @@ public:
 	void Playerstage2();
 	void NextBoss();
 	void PlayerBoss();
+	void Stage1PlayerDie();
+	void Stage2PlayerDie();
+	void BossPlayerDie();
+	void BossClear();
 };
 

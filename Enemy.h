@@ -1,7 +1,6 @@
 #pragma once
 #include "DoubleBuffer.h"
 
-#define Enemycount 8
 
 class Enemy
 {

@@ -36,8 +36,8 @@ void Menu::Progress()
 	{
 		if (arrowy == 25)
 		{
-			DataManager::Get()->SetEnemy();
-			SceneManager::Get()->Setscene(STAGE);
+			
+			SceneManager::Get()->Setscene(BOSS);
 		}
 		if (arrowy == 30)
 		{

@@ -27,11 +27,13 @@ public:
 		return instance;
 	}
 
+#pragma region 데이터 할당
+
 	void SetPlayer()
 	{
 		if (currentplayer == nullptr)
 		{
-		
+
 			currentplayer = new PLAYER;
 		}
 	}
@@ -48,12 +50,24 @@ public:
 
 	void SetEnemy2()
 	{
-		if (currentenemy == nullptr)
+		if (currentenemy2 == nullptr)
 		{
 			currentenemy2 = new Enemy2;
 		}
 	}
 
+	void SetBoss()
+	{
+		if (currentboss == nullptr)
+		{
+			currentboss = new Boss;
+		}
+	}
+#pragma endregion
+
+
+
+#pragma region data 해제
 	void ReleasePlayer()
 	{
 		if (currentplayer != nullptr)
@@ -71,5 +85,24 @@ public:
 			currentenemy = nullptr;
 		}
 	}
+	void ReleaseEnemy2()
+	{
+		if (currentenemy2 != nullptr)
+		{
+			delete currentenemy2;
+			currentenemy2 = nullptr;
+		}
+	}
+	void ReleaseBoss()
+	{
+		if (currentboss != nullptr)
+		{
+			delete currentboss;
+			currentboss = nullptr;
+		}
+	}
+#pragma endregion
+
+
 };
 

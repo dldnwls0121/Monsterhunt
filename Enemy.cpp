@@ -20,7 +20,7 @@ void Enemy::Enemymove(int x,int y)
 
 	Speed++;
 
-	if (Speed % 3 == 0)
+	if (Speed % 2 == 0)
 	{
 
 		if (x > enemyx)

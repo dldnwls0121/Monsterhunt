@@ -1,5 +1,5 @@
 #include "Enemy2.h"
-
+#include "Datamanager.h"
 void Enemy2::init()
 {
 	shape[0] = "   ㅡㅡ   ";
@@ -36,15 +36,22 @@ void Enemy2::Enemymove2(int x, int y)
 
 void Enemy2::RenderEnemy()
 {
-	char eneme_hp[10];
-	_itoa_s(enemy2hp, eneme_hp, 10);
-
-	for (int i = 0; i < 3; i++)
+	if (DataManager::Get()->currentenemy2 != nullptr)
 	{
-		DoubleBuffer::Get()->WriteBuffer(enemy2x, enemy2y + i, shape[i], RED);
+
+		char eneme_hp[10];
+		_itoa_s(enemy2hp, eneme_hp, 10);
+
+		if (enemy2act == true)
+		{
+			for (int i = 0; i < 3; i++)
+			{
+				DoubleBuffer::Get()->WriteBuffer(enemy2x, enemy2y + i, shape[i], RED);
+			}
+		}
+		DoubleBuffer::Get()->WriteBuffer(32, 0, "적 체력", WHITE);
+		DoubleBuffer::Get()->WriteBuffer(37, 0, eneme_hp, RED);
 	}
-	DoubleBuffer::Get()->WriteBuffer(32, 0, "적 체력", WHITE);
-	DoubleBuffer::Get()->WriteBuffer(37, 0, eneme_hp, RED);
 }
 
 void Enemy2::Respawn()

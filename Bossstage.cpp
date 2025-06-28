@@ -1,27 +1,27 @@
 #include "Bossstage.h"
-#include "color.h"
+#include "Datamanager.h"
+#include "BattleManager.h"
+
 void Bossstage::Init()
 {
-	shape[0] = "      ¡á¡á¡á  ¡á¡á  ¡á¡á¡á";
-	shape[1] = "      ¡á¡á¡á  ¡á¡á  ¡á¡á¡á";
-	shape[2] = "      ¡á¡á¡á  ¡á¡á  ¡á¡á¡á";
-	shape[3] = "¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á";
-	shape[4] = "¡á¡á¡á¡á¡á¡á   ¤Ó   ¡á¡á¡á";
-	shape[5] = "¡á¡á¡á¡á       ¤Ó       ¡á";
-	shape[6] = "      ¡á¡á¡á   ¤Ó   ¡á¡á¡á";
-	shape[7] = "      ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á";
+	DataManager::Get()->SetBoss();
+	DataManager::Get()->currentboss->init();
+	DataManager::Get()->currentplayer->init();
+
 
 }
 
 void Bossstage::Progress()
 {
-	
+	DataManager::Get()->currentplayer->Playermove();
+	DataManager::Get()->currentboss->Bossattack();
+	BattleManager::Get()->PlayerBoss();
 }
 
 void Bossstage::Render()
 {
-	for (int i = 0; i < 8; i++)
-	{
-		DoubleBuffer::Get()->WriteBuffer(x, y + i, shape[i], RED);
-	}
+	DataManager::Get()->currentplayer->Renderplayer();
+	DataManager::Get()->currentboss->RenderBoss();
+	BattleManager::Get()->BossClear();
+	BattleManager::Get()->BossPlayerDie();
 }

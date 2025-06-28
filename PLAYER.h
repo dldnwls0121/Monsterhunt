@@ -34,7 +34,7 @@ public:
 	int atk = 10;
 	int def = 5;
 	Dir dir = LEFT;
-	int x = 25;
+	int x = 20;
 	int y = 28;
 	int playermoney = 500;
 	Map* map = new Map;

@@ -114,37 +114,7 @@ void PLAYER::Renderplayer()
 	DoubleBuffer::Get()->WriteBuffer(0, 6, "소지금 : ", WHITE);
 	DoubleBuffer::Get()->WriteBuffer(4, 6, player_Gold, YELLOW);
 	DoubleBuffer::Get()->WriteBuffer(18, 0, Enemy_count, YELLOW);
-	DoubleBuffer::Get()->WriteBuffer(20, 0, " /8 처치 수", YELLOW);
 	
-	if (hp == 0)
-	{
-		DoubleBuffer::Get()->WriteBuffer(10, 10, "플레이어가 사망하였습니다", YELLOW);
-		DoubleBuffer::Get()->WriteBuffer(10, 10, "메뉴로 돌아가실려면 Enter를 눌러주세요", YELLOW);
-		if (GetAsyncKeyState(VK_RETURN))
-		{
-			SceneManager::Get()->Setscene(MENU);
-			DataManager::Get()->currentplayer->hp = 50;
-			DataManager::Get()->currentplayer->dir = LEFT;
-			DataManager::Get()->currentplayer->atk = 10;
-			DataManager::Get()->currentplayer->def = 5;
-			DataManager::Get()->currentplayer->playermoney = 500;
-
-			if (DataManager::Get()->currentenemy != nullptr)
-			{
-
-				DataManager::Get()->currentenemy->enemyhp = 20;
-				DataManager::Get()->currentenemy->enemyx = 40;
-				DataManager::Get()->currentenemy->enemyy = 28;
-				DataManager::Get()->currentenemy->enemydmg = 5;
-				DataManager::Get()->currentenemy->enemyact = true;
-			}
-		}
-
-
-	}
-
-
-
 	
 }
 

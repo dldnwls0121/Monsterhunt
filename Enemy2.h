@@ -10,7 +10,7 @@ private:
 	int Speed = 0;
 public:
 
-	int enemy2hp = 20;
+	int enemy2hp = 10;
 	int enemy2x = 29;
 	int enemy2y = 25;
 	int enemy2dmg = 5;
