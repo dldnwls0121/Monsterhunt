@@ -36,9 +36,6 @@ void PLAYER::init()
 
 void PLAYER::Playermove()
 {
-	Enemy& enemies = *DataManager::Get()->currentenemy;
-	
-
 		if (GetAsyncKeyState(VK_LEFT))
 		{
 			dir = LEFT;
@@ -79,8 +76,6 @@ void PLAYER::Playermove()
 				fall = false;
 			}
 		}
-	
-		
 
 }
 
