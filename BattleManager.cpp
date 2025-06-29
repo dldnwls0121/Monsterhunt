@@ -79,7 +79,7 @@ void BattleManager::Playerstage1()
 	}
 	if (player.x == enemies.enemyx)
 	{
-		player.hp -= enemies.enemydmg;
+		player.hp -= ( enemies.enemydmg - player.def );
 		if (player.hp <= 0)
 		{
 			player.dir = DIE;
@@ -188,7 +188,7 @@ void BattleManager::Playerstage2()
 
 	if (player.x == enemies2.enemy2x)
 	{
-		player.hp -= enemies2.enemy2dmg;
+		player.hp -= (enemies2.enemy2dmg - player.def);
 		if (player.hp <= 0)
 		{
 			player.dir = DIE;
@@ -289,22 +289,63 @@ void BattleManager::PlayerBoss()
 	{
 		return;
 	}
-	for (int i = 0; i < 5; i++)
+	boss.bossattackcount++;
+
+	// 공격 생성: bossattackcount가 10 이상일 때 한 번만 생성
+	if (boss.bossattackcount >= 2)
 	{
-		if (player.x == boss.attack_x[i])
+
+		for (int i = 0; i < Boss_attack; i++)
 		{
-			player.hp -= boss.bossdmg;
-			if (player.hp <= 0)
+			if (!boss.attack_active[i])
 			{
-				player.dir = DIE;
-				boss.bossact = false;
+				boss.attack_x[i] = boss.bossx - 1;
+				boss.attack_y[i] = 28 + rand() % 4;
+				boss.attack_active[i] = true;
+				boss.attack_shape[i] = "←";
+				break;
+			}
+
+			boss.attack_x[i]--;
+			if (boss.attack_x[i] < 0)
+			{
 				boss.attack_active[i] = false;
-				return;
+			}
+
+		}
+
+		boss.bossattackcount = 0;
+	}
+	for (int i = 0; i < Boss_attack; i++)
+	{
+		if (boss.attack_active[i])
+		{
+			if (player.x + 2 >= boss.attack_x[i] && boss.attack_x[i] >= player.x - 2 
+				&& boss.attack_y[i] <= player.y + 3 && boss.attack_y[i] >= player.y - 3)
+			{
+				player.hp -= (boss.bossdmg - player.def);
+				boss.attack_active[i] = false;
+				
+
+				if (boss.attack_x[i] <= 0)
+				{
+					boss.attack_active[i] = false; // 화면 밖으로 나가면 비활성화
+				}
+				if (player.hp <= 0)
+				{
+					player.dir = DIE;
+					boss.bossact = false;
+					boss.attack_active[i] = false;
+					
+				}
 			}
 		}
+
 	}
 
 }
+
+
 
 void BattleManager::Stage1PlayerDie()
 {
@@ -371,10 +412,10 @@ void BattleManager::Stage2PlayerDie()
 
 void BattleManager::BossPlayerDie()
 {
-	if (DataManager::Get()->currentplayer->hp == 0)
+	if (DataManager::Get()->currentplayer->hp <= 0)
 	{
 		DoubleBuffer::Get()->WriteBuffer(10, 10, "플레이어가 사망하였습니다", YELLOW);
-		DoubleBuffer::Get()->WriteBuffer(10, 10, "메뉴로 돌아가실려면 Enter를 눌러주세요", YELLOW);
+		DoubleBuffer::Get()->WriteBuffer(10, 11, "메뉴로 돌아가실려면 Enter를 눌러주세요", YELLOW);
 		if (GetAsyncKeyState(VK_RETURN))
 		{
 			SceneManager::Get()->Setscene(MENU);
@@ -401,7 +442,8 @@ void BattleManager::BossPlayerDie()
 
 void BattleManager::BossClear()
 {
-	if (DataManager::Get()->killCount == 8)
+	DoubleBuffer::Get()->WriteBuffer(20, 0, " /1 처치 수", YELLOW);
+	if (DataManager::Get()->killCount == 1)
 	{
 		DoubleBuffer::Get()->WriteBuffer(10, 10, "모든 스테이지를 클리어하셨습니다! ", YELLOW);
 		DoubleBuffer::Get()->WriteBuffer(10, 11, "게임을 종료하면 Enter을 눌러주세요!", YELLOW);

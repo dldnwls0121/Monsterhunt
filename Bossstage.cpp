@@ -14,14 +14,19 @@ void Bossstage::Init()
 void Bossstage::Progress()
 {
 	DataManager::Get()->currentplayer->Playermove();
-	DataManager::Get()->currentboss->Bossattack();
+
 	BattleManager::Get()->PlayerBoss();
+	DataManager::Get()->currentplayer->DrinkPotion();
+	//DataManager::Get()->currentboss->Bossattack();
 }
 
 void Bossstage::Render()
 {
+
+
 	DataManager::Get()->currentplayer->Renderplayer();
 	DataManager::Get()->currentboss->RenderBoss();
+	
 	BattleManager::Get()->BossClear();
 	BattleManager::Get()->BossPlayerDie();
 }

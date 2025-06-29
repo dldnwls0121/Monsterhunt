@@ -52,20 +52,43 @@ void Shop::Progress()
 		
 		if (arrowy == 20)
 		{
-			DataManager::Get()->currentplayer->playermoney -= Hppotion;
-			DoubleBuffer::Get()->WriteBuffer(20, 2, "∞Ì∏ø¥Ÿ≥…", WHITE);
+			if (DataManager::Get()->currentplayer->playermoney >= Hppotion)
+			{
+				DataManager::Get()->currentplayer->playermoney -= Hppotion;
+				DataManager::Get()->currentplayer->Hppotion += 1;
+				DoubleBuffer::Get()->WriteBuffer(20, 2, "∞Ì∏ø¥Ÿ≥…", WHITE);
+			}
+			else
+			{
+				DoubleBuffer::Get()->WriteBuffer(20, 2, "µ∑¿Ã ∫Œ¡∑«œ¥Ÿ!", WHITE);
+			}
+	
 		}
 		else if (arrowy == 25)
 		{
-			DataManager::Get()->currentplayer->playermoney -= Strpotion;
-			DataManager::Get()->currentplayer->atk += 5;
-			DoubleBuffer::Get()->WriteBuffer(20, 5, "∞Ì∏ø¥Ÿ≥…", WHITE);
+			if (DataManager::Get()->currentplayer->playermoney >= Strpotion)
+			{
+				DataManager::Get()->currentplayer->playermoney -= Strpotion;
+				DataManager::Get()->currentplayer->Atkpotion += 1;
+				DoubleBuffer::Get()->WriteBuffer(20, 2, "∞Ì∏ø¥Ÿ≥…", WHITE);
+			}
+			else
+			{
+				DoubleBuffer::Get()->WriteBuffer(20, 2, "µ∑¿Ã ∫Œ¡∑«œ¥Ÿ!", WHITE);
+			}
 		}
 		else if (arrowy == 30)
 		{
-			DataManager::Get()->currentplayer->playermoney -= Defpotion;
-			DataManager::Get()->currentplayer->def += 3;
-			DoubleBuffer::Get()->WriteBuffer(20, 5, "∞Ì∏ø¥Ÿ≥…", WHITE);
+			if (DataManager::Get()->currentplayer->playermoney >= Defpotion)
+			{
+				DataManager::Get()->currentplayer->playermoney -= Defpotion;
+				DataManager::Get()->currentplayer->Defpotion += 1;
+				DoubleBuffer::Get()->WriteBuffer(20, 2, "∞Ì∏ø¥Ÿ≥…", WHITE);
+			}
+			else
+			{
+				DoubleBuffer::Get()->WriteBuffer(20, 2, "µ∑¿Ã ∫Œ¡∑«œ¥Ÿ!", WHITE);
+			}
 		}
 		else if (arrowy == 35)
 		{

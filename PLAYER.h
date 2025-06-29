@@ -33,6 +33,9 @@ public:
 	int hp = 50;
 	int atk = 10;
 	int def = 5;
+	int Hppotion = 0;
+	int Atkpotion = 0;
+	int Defpotion = 0;
 	Dir dir = LEFT;
 	int x = 20;
 	int y = 28;
@@ -42,5 +45,6 @@ public:
 	void Playermove();
 	void Renderplayer();
 	void PlayerDamage();
+	void DrinkPotion();
 };
 

@@ -28,6 +28,7 @@ public:
 	void Playerstage2();
 	void NextBoss();
 	void PlayerBoss();
+	void Bossattack();
 	void Stage1PlayerDie();
 	void Stage2PlayerDie();
 	void BossPlayerDie();

@@ -40,29 +40,10 @@ void Boss::init()
 	Dieshape[6] = "      ■■■ ■  ■ ■■■";
 	Dieshape[7] = "      ■■■■■■■■■■";
 
-	for (int i = 0; i < Boss_attack; i++)
-	{
-		attack_x[i] = bossx - 1;
-		attack_y[i] = bossy + rand() % 5;
-		attack_active[i] = true;
-	}
+
 }
 
-void Boss::Bossattack()
-{
-	if (!bossact) return;
-	for (int i = 0; i < Boss_attack; i++)
-	{
-		if (attack_active[i])
-		{
-			attack_x[i]--;
-			if (attack_x[i] < 0)
-			{
-				attack_active[i] = false; // 화면 밖으로 나가면 비활성화
-			}
-		}
-	}
-}
+
 
 
 
@@ -79,7 +60,7 @@ void Boss::RenderBoss()
 			{
 				DoubleBuffer::Get()->WriteBuffer(bossx, bossy + i, Dieshape[i], RED);
 			}
-			
+			return;
 		}
 
 		Speed++;
@@ -97,17 +78,29 @@ void Boss::RenderBoss()
 
 		for (int i = 0; i < 8; i++)
 		{
-			DoubleBuffer::Get()->WriteBuffer(bossx, bossy + i, shape[aniindex][i], RED);
+			
+				DoubleBuffer::Get()->WriteBuffer(bossx, bossy + i, shape[aniindex][i], RED);
+			
+			
 		}
 		DoubleBuffer::Get()->WriteBuffer(32, 0, "보스 체력", WHITE);
 		DoubleBuffer::Get()->WriteBuffer(37, 0, boss_hp, RED);
+
+		for (int i = 0; i < Boss_attack; i++)
+		{
+			if (attack_active[i]==true)
+			{
+				DoubleBuffer::Get()->WriteBuffer(attack_x[i],attack_y[i], attack_shape[i], RED);
+			}
+
+		}
+
+
 	}
 
-	for (int i = 0; i < Boss_attack; i++)
-	{
-		if (attack_active[i]) // 잘못 가리키는 해결하기
-		{
-			DoubleBuffer::Get()->WriteBuffer(attack_x[i], attack_y[i], attack_shape, RED);
-		}
-	}
+
 }
+
+
+
+

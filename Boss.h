@@ -13,20 +13,24 @@ private:
 	int aniindex = 0;
 
 public:
+	int bossattackcount = 0;
 	int bossx = 27;
 	int bossy = 24;
-	int bossdmg = 5;
+	int bossdmg = 10;
 	bool bossact = true;
 	bool boss_attack = true;
 	int bosshp = 100;
 
+
 	int attack_x[Boss_attack];
 	int attack_y[Boss_attack];
 	bool attack_active[Boss_attack];
-	string attack_shape = "ก็";
+	string attack_shape[Boss_attack];
 
+	
 	void init();
-	void Bossattack();
+
 	void RenderBoss();
+
 };
 

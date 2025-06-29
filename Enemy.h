@@ -10,7 +10,7 @@ private:
 public:
 	int enemyx = 40;
 	int enemyy = 28;
-	int enemydmg = 5;
+	int enemydmg = 10;
 	bool enemyact = true;
 	int enemyhp = 10;
 

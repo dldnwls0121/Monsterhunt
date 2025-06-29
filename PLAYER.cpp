@@ -84,6 +84,45 @@ void PLAYER::Playermove()
 
 }
 
+void PLAYER::DrinkPotion()
+{
+	if (GetAsyncKeyState(VK_NUMPAD1))
+	{
+		if (Hppotion > 0)
+		{
+			hp += 10;
+			Hppotion--;
+		}
+		else if (Hppotion <= 0)
+		{
+			hp += 0;
+		}
+	}
+	if (GetAsyncKeyState(VK_NUMPAD2))
+	{
+		if (Atkpotion > 0)
+		{
+			atk += 5;
+			Atkpotion--;
+		}
+		else if (Atkpotion <= 0)
+		{
+			atk += 0;
+		}
+	}
+	if (GetAsyncKeyState(VK_NUMPAD3))
+	{
+		if (Defpotion > 0)
+		{
+			def += 2;
+			Defpotion--;
+		}
+		else if (Defpotion <= 0)
+		{
+			def += 0;
+		}
+	}
+}
 
 void PLAYER::Renderplayer()
 {
@@ -97,6 +136,12 @@ void PLAYER::Renderplayer()
 	_itoa_s(playermoney, player_Gold, 10);
 	char Enemy_count[10];
 	_itoa_s(DataManager::Get()->killCount, Enemy_count, 10);
+	char hp_potion[10];
+	_itoa_s(Hppotion, hp_potion, 10);
+	char Atk_potion[10];
+	_itoa_s(Atkpotion, Atk_potion, 10);
+	char Def_potion[10];
+	_itoa_s(Defpotion, Def_potion, 10);
 
 	map->Mapinit();
 
@@ -114,9 +159,16 @@ void PLAYER::Renderplayer()
 	DoubleBuffer::Get()->WriteBuffer(0, 6, "소지금 : ", WHITE);
 	DoubleBuffer::Get()->WriteBuffer(4, 6, player_Gold, YELLOW);
 	DoubleBuffer::Get()->WriteBuffer(18, 0, Enemy_count, YELLOW);
-	
+	DoubleBuffer::Get()->WriteBuffer(5, 35,"HP 포션 :", WHITE);
+	DoubleBuffer::Get()->WriteBuffer(10, 35, hp_potion, WHITE);
+	DoubleBuffer::Get()->WriteBuffer(15, 35,"공격력포션 :" , WHITE);
+	DoubleBuffer::Get()->WriteBuffer(22, 35, Atk_potion, WHITE);
+	DoubleBuffer::Get()->WriteBuffer(25, 35,"방어력포션 :" , WHITE);
+	DoubleBuffer::Get()->WriteBuffer(32, 35, Def_potion, WHITE);
 	
 }
+
+
 
 
 
