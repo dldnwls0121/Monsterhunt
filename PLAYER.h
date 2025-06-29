@@ -18,8 +18,6 @@ enum Dir
 class PLAYER
 {
 private:
-	
-	
 	bool fall = false;
 	string shape[5][4];
 #pragma region 점프 구현 
@@ -30,16 +28,16 @@ private:
 #pragma endregion
 
 public:
-	int hp ;
-	int atk;
-	int def;
-	int Hppotion ;
-	int Atkpotion ;
-	int Defpotion ;
-	Dir dir ;
-	int x ;
-	int y ;
-	int playermoney ;
+	int hp = 50;
+	int atk = 10;
+	int def = 5;
+	int Hppotion = 0;
+	int Atkpotion = 0;
+	int Defpotion = 0;
+	Dir dir = LEFT;
+	int x = 20;
+	int y = 28;
+	int playermoney = 500;
 	Map* map = new Map;
 	void init();
 	void Playermove();
