@@ -38,7 +38,7 @@ void BattleManager::Playerstage1()
 		else if (player.dir == RIGHT)
 		{
 			player.dir = RSPACE;
-			if (enemies.enemyx >= player.x && player.x + 4 >= enemies.enemyx)
+			if (enemies.enemyx >= player.x && player.x + 6 >= enemies.enemyx)
 			{
 				enemies.enemyhp -= player.atk;
 				if (enemies.enemyhp <= 0)
