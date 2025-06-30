@@ -12,9 +12,6 @@ void Enemy::init()
 	shape[2] = "ㅣ~~~~ㅣ";
 	shape[3] = " ㅡㅡㅡ";
 }
-
-
-
 void Enemy::Enemymove(int x,int y)
 {
 
@@ -44,31 +41,6 @@ void Enemy::Enemymove(int x,int y)
 }
 
 
-
-void Enemy::RenderEnemy()
-{
-	if (DataManager::Get()->currentenemy != nullptr)
-	{
-		char emyhp[10];
-		_itoa_s(enemyhp, emyhp, 10);
-
-
-		if (enemyact == true)
-		{
-			for (int i = 0; i < 4; i++)
-			{
-				DoubleBuffer::Get()->WriteBuffer(enemyx, enemyy + i, shape[i], BLUE);
-			}
-		}
-
-
-		DoubleBuffer::Get()->WriteBuffer(32, 0, "적 체력 : ", WHITE);
-		DoubleBuffer::Get()->WriteBuffer(37, 0, emyhp, RED);
-	}
-
-
-}
-
 void Enemy::Respawn()
 {
 	enemyx = (rand() % 2 == 0) ? 0 : 40;
@@ -76,3 +48,22 @@ void Enemy::Respawn()
 	enemyhp = 10;
 	enemyact = true;
 }
+
+void Enemy::RenderEnemy()
+{
+	if (DataManager::Get()->currentenemy != nullptr)
+	{
+		char emyhp[10];
+		_itoa_s(enemyhp, emyhp, 10);
+		if (enemyact == true)
+		{
+			for (int i = 0; i < 4; i++)
+			{
+				DoubleBuffer::Get()->WriteBuffer(enemyx, enemyy + i, shape[i], BLUE);
+			}
+		}
+		DoubleBuffer::Get()->WriteBuffer(32, 0, "적 체력 : ", WHITE);
+		DoubleBuffer::Get()->WriteBuffer(37, 0, emyhp, RED);
+	}
+}
+
