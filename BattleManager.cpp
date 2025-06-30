@@ -451,6 +451,7 @@ void BattleManager::BossClear()
 		if (GetAsyncKeyState(VK_RETURN))
 		{
 			DataManager::Get()->ReleaseBoss();
+			DataManager::Get()->ReleasePlayer();
 			exit(1);
 
 		}

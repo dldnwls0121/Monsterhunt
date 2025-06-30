@@ -1,6 +1,6 @@
 #pragma once
 
-#define  MAP_WIDTH 40
+#define  MAP_WIDTH 42
 #define  MAP_HEIGHT 40
 
 
