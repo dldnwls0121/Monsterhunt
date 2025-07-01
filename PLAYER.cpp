@@ -23,7 +23,7 @@ void PLAYER::init()
 
 	shape[3][0] = "          ";
 	shape[3][1] = " ¡Û    ";
-	shape[3][2] = "(¤Ó -->>  ";
+	shape[3][2] = "(¤Óo-->>  ";
 	shape[3][3] = " ¤µ      ";
 
 	shape[4][0] = "        ";
